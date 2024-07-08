@@ -14,4 +14,9 @@ public class AnimationController : MonoBehaviour
         bool isMoving = (inputDirection != Vector3.zero);
         _animator.SetBool("move", isMoving);
     }
+
+    public void PlayLightAttack()
+    {
+        _animator.SetBool("lightAttack", true);
+    }
 }
