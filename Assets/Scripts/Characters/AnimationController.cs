@@ -9,7 +9,7 @@ public class AnimationController : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public void UpdateAnimation(ref Vector3 inputDirection)
+    public void SetDirection(ref Vector3 inputDirection)
     {
         bool isMoving = (inputDirection != Vector3.zero);
         _animator.SetBool("move", isMoving);
