@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController _characterController;
     private Transform _transform;
     private AnimationController _animationController;
-    private Vector3 _direction = Vector3.forward;
+    private Vector3 _direction = Vector3.zero;
 
     private void Start()
     {

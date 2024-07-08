@@ -985,11 +985,10 @@ GameObject:
   - component: {fileID: 2686890238580842728}
   - component: {fileID: 2686890238588325744}
   - component: {fileID: 3448783744753066442}
-  - component: {fileID: -1944744577851920292}
   - component: {fileID: -671334421930273623}
   - component: {fileID: 3380634641779182393}
   m_Layer: 0
-  m_Name: PlayerCharacter
+  m_Name: BaseCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1022,7 +1021,7 @@ Animator:
   m_GameObject: {fileID: 2686890238580948232}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cea7b4908e889df4ea1487e9f97c3c67, type: 3}
-  m_Controller: {fileID: 9100000, guid: 13a939e86d17c4345bd46ef36ce2f1c6, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1059,21 +1058,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.07, z: 0}
---- !u!114 &-1944744577851920292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2686890238580948232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e089b6ebf5d89e74692a5d22626690e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 4
-  _rotationSpeed: 10
-  _inputDeadZone: 0.5
 --- !u!114 &-671334421930273623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,6 +1082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11048829c5fbe8d45afb69c3e4ea0265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 3
+  _rotationSpeed: 10
 --- !u!1 &2686890238580948236
 GameObject:
   m_ObjectHideFlags: 0

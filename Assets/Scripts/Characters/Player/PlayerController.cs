@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterMovement _movement;
-    private Vector3 _inputDirection = Vector3.forward;
+    private Vector3 _inputDirection = Vector3.zero;
 
     private void Start()
     {
