@@ -6,12 +6,13 @@ public class BaseMovementState : AControllerState
     private Vector3 _inputDirection = Vector3.zero;
     private CharacterMovement _movement;
     private AnimationController _animation;
+    private CombatController _combatController;
 
     public override void OnEnter(PlayerController controller)
     {
-        _movement = controller.GetComponent<CharacterMovement>();
-        _animation = controller.GetComponent<AnimationController>();
-        _animation.PlayIdle();
+        _movement ??= controller.GetComponent<CharacterMovement>();
+        _animation ??= controller.GetComponent<AnimationController>();
+        _combatController ??= controller.GetComponent<CombatController>();
     }
 
     public override void OnUpdate(PlayerController controller)
@@ -30,7 +31,7 @@ public class BaseMovementState : AControllerState
         {
             _inputDirection.Set(0.0f, 0.0f, 0.0f);
             Action callback = () => { controller.ChangeState(EControllerState.BaseMovement); };
-            _animation.StartCoroutine(_animation.PlayLightAttack(callback));
+            _combatController.LightAttack(callback);
             controller.ChangeState(EControllerState.NoInput);
         }
 

@@ -17,14 +17,9 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool("move", isMoving);
     }
 
-    public void PlayIdle()
-    {
-        _animator.Play("BasicMotions@Idle01");
-    }
-
     public IEnumerator PlayLightAttack(Action callback)
     {
-        _animator.Play("Take 001");
+        _animator.SetTrigger("lightAttack");
         yield return null;
 
         float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
