@@ -5,18 +5,13 @@ public class GameplayManager : MonoBehaviour
     [SerializeField]
     private GameObject _player;
 
-    private static GameplayManager _instance = null;
+    public static GameplayManager Instance { get; private set; }
 
     private void Awake()
     {
-        _instance = this;
+        Instance = this;
     }
-
-    public static GameplayManager GetInstance()
-    {
-        return _instance;
-    }
-
+    
     public GameObject GetPlayer()
     {
         return _player;

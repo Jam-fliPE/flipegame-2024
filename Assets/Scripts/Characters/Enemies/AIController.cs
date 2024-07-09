@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour
     {
         _movement = GetComponent<CharacterMovement>();
         _transform = transform;
-        GameObject player = GameplayManager.GetInstance().GetPlayer();
+        GameObject player = GameplayManager.Instance.GetPlayer();
         _playerTransform = player.transform;
     }
 

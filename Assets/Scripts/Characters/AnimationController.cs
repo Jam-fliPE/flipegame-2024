@@ -1,10 +1,12 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
     private Animator _animator;
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
@@ -15,8 +17,19 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool("move", isMoving);
     }
 
-    public void PlayLightAttack()
+    public void PlayIdle()
     {
-        _animator.SetBool("lightAttack", true);
+        _animator.Play("BasicMotions@Idle01");
+    }
+
+    public IEnumerator PlayLightAttack(Action callback)
+    {
+        _animator.Play("Take 001");
+        yield return null;
+
+        float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(duration);
+
+        callback();
     }
 }

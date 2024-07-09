@@ -2,30 +2,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterMovement _movement;
-    private AnimationController _animation;
-    private Vector3 _inputDirection = Vector3.zero;
+    private AControllerState _state;
+    private ControllerStatesFactory _statesFactory;
 
     private void Start()
     {
-        _movement = GetComponent<CharacterMovement>();
-        _animation = GetComponent<AnimationController>();
+        _statesFactory = new ControllerStatesFactory();
+        ChangeState(EControllerState.BaseMovement);
     }
 
     private void Update()
     {
-        _inputDirection.Set(0.0f, 0.0f, 0.0f);
+        _state.OnUpdate(this);
+    }
 
-        _inputDirection.z = Input.GetAxis("Horizontal");
-        _inputDirection.x = -Input.GetAxis("Vertical");
-
-        _inputDirection.Normalize();
-
-        _movement.SetDirection(ref _inputDirection);
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            _animation.PlayLightAttack();
-        }
+    public void ChangeState(EControllerState stateType)
+    {
+        _state = _statesFactory.Resolve(stateType);
+        _state.OnEnter(this);
     }
 }
