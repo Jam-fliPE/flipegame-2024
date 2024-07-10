@@ -60,10 +60,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 2686890238588325744, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 141ddf9cad15c3248bd99355c797293b, type: 2}
+    - target: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71,7 +71,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5789265925061637856}
+    - targetCorrespondingSourceObject: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5418091353482414341}
   m_SourcePrefab: {fileID: 100100000, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+--- !u!137 &4621019572741046000 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2686890238592446898, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+  m_PrefabInstance: {fileID: 7307346301784362818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4621019572744221258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
@@ -89,3 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d15ffa679cad284693eb06e08f39a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5418091353482414341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621019572744221258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1a958f28a12524cbc9c3e983d4a4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 50
+  _renderer: {fileID: 4621019572741046000}

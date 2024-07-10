@@ -27,4 +27,14 @@ public class AnimationController : MonoBehaviour
 
         callback();
     }
+
+    public void PlayHitReaction()
+    {
+        _animator.SetTrigger("hitReaction");
+    }
+
+    public void PlayDeath()
+    {
+        _animator.SetTrigger("death");
+    }
 }

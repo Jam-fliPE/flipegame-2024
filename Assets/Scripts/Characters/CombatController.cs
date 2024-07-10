@@ -15,7 +15,6 @@ public class CombatController : MonoBehaviour
     private void Start()
     {
         _animationController = GetComponent<AnimationController>();
-        // _attackCollider.enabled = false;
     }
 
     public void LightAttack(Action callback)
@@ -30,7 +29,17 @@ public class CombatController : MonoBehaviour
 
         foreach (Collider item in hitEnemies)
         {
-            item.GetComponent<HealthController>().TakeDamage(20);
+            HealthController healthController;
+            if (item.CompareTag("Player"))
+            {
+                healthController = item.GetComponent<PlayerHealthController>();
+            }
+            else
+            {
+                healthController = item.GetComponent<EnemyHealthController>();
+            }
+            
+            healthController.TakeDamage(transform, 20);
         }
     }
 
