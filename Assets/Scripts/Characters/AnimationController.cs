@@ -5,6 +5,8 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     private Animator _animator;
+    private string[] _lightAttacks = { "ze_light_attack_1", "ze_light_attack_2", "ze_light_attack_3" };
+    private string[] _hitReactions = { "hit_reaction_1", "hit_reaction_2" };
 
     private void Awake()
     {
@@ -19,7 +21,8 @@ public class AnimationController : MonoBehaviour
 
     public IEnumerator PlayLightAttack(Action callback)
     {
-        _animator.SetTrigger("lightAttack");
+        int index = UnityEngine.Random.Range(0, _lightAttacks.Length);
+        _animator.Play(_lightAttacks[index]);
         yield return null;
 
         float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
@@ -30,7 +33,8 @@ public class AnimationController : MonoBehaviour
 
     public void PlayHitReaction()
     {
-        _animator.SetTrigger("hitReaction");
+        int index = UnityEngine.Random.Range(0, _hitReactions.Length);
+        _animator.Play(_hitReactions[index]);
     }
 
     public void PlayDeath()

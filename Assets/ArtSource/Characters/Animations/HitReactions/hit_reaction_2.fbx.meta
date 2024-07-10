@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac9650c74deac2b49b724aea91a256c5
+guid: 10290dfe11aa9f64ebf357d65c26498f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: hit_reaction
-      takeName: BasicMotions@Talk01
-      internalID: -4131146202891655349
-      firstFrame: 0
-      lastFrame: 16.3
+      name: hit_reaction_2
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 1
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,7 +60,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 0
   meshes:
     lODScreenPercentages: []

@@ -6,7 +6,7 @@ public abstract class HealthController : MonoBehaviour
     private int _maxHealth = 100;
 
     private AnimationController _animationController;
-    int _currentHealth;
+    private int _currentHealth;
 
     private void Start()
     {
@@ -27,6 +27,11 @@ public abstract class HealthController : MonoBehaviour
         {
             _animationController.PlayHitReaction();
         }
+    }
+
+    public bool IsAlive()
+    {
+        return (_currentHealth > 0);
     }
 
     protected abstract void OnDie();
