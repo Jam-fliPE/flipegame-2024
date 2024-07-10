@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class CombatController : MonoBehaviour
@@ -22,9 +21,14 @@ public class CombatController : MonoBehaviour
     public void LightAttack(Action callback)
     {
         StartCoroutine(_animationController.PlayLightAttack(callback));
+    }
+
+    // Called by light attack animation
+    public void OnLightAttackEvent()
+    {
         Collider[] hitEnemies = Physics.OverlapSphere(_attackPoint.position, _attackRange, _enemyLayers);
 
-        foreach(Collider item in hitEnemies)
+        foreach (Collider item in hitEnemies)
         {
             item.GetComponent<HealthController>().TakeDamage(20);
         }
