@@ -25,7 +25,7 @@ public class AIController : MonoBehaviour
         GameObject player = GameplayManager.Instance.GetPlayer();
         _playerTransform = player.transform;
 
-        // _state = 
+        _state = new PatrolState();
     }
 
     private void Update()

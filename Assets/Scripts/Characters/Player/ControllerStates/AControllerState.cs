@@ -13,9 +13,11 @@ public abstract class AControllerState
     
     public virtual void OnUpdate(PlayerController controller)
     {
+        /*
         if (Input.GetButtonDown("Cancel"))
         {
             ScreenManager.Instance.LoadMainMenu();
         }
+        */
     }
 }

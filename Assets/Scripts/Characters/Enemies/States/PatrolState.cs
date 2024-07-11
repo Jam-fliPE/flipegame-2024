@@ -3,7 +3,6 @@ using UnityEngine;
 public class PatrolState : BaseEnemyState
 {
     private Vector3 _targetPosition;
-    private bool _moving = false;
 
     public override void OnEnter(AIController controller)
     {

@@ -675,6 +675,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ab0f0b6003ba840afdde9bf851512a, type: 3}
+--- !u!1 &383894047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 209073802993734295, guid: bc1c2bca32e4b354dafb6ab9c8f68308, type: 3}
+  m_PrefabInstance: {fileID: 1709390635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &395399121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1963,7 +1968,7 @@ PrefabInstance:
     - target: {fileID: -1066959288752087145, guid: 367770fc001ead64d8b07c12fc66ac7f, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 383894047}
     - target: {fileID: 4191695451863102301, guid: 367770fc001ead64d8b07c12fc66ac7f, type: 3}
       propertyPath: m_Name
       value: GameplayManager

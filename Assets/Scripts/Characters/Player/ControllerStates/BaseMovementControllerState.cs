@@ -27,7 +27,7 @@ public class BaseMovementState : AControllerState
         _inputDirection.Normalize();
 
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Fire1"))
         {
             _inputDirection.Set(0.0f, 0.0f, 0.0f);
             Action callback = () => { controller.ChangeState(EControllerState.BaseMovement); };
