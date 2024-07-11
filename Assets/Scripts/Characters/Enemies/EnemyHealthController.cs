@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class EnemyHealthController : HealthController
@@ -9,6 +7,13 @@ public class EnemyHealthController : HealthController
 
     protected override void OnDie()
     {
-        Destroy(gameObject, 2.0f);
+        Invoke("OnRemove", 2.0f);
+    }
+
+    private void OnRemove()
+    {
+        AIController controller = GetComponent<AIController>();
+        EnemiesWaveManager.Instance.OnEnemyDead(controller);
+        Destroy(gameObject);
     }
 }

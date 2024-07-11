@@ -3,10 +3,13 @@ using UnityEngine;
 [RequireComponent (typeof(BoxCollider))]
 public abstract class BaseInteractionVolume : MonoBehaviour
 {
+    private bool _waitingInteraction = true;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (_waitingInteraction && other.CompareTag("Player"))
         {
+            _waitingInteraction = false;
             OnInteraction();
         }
     }

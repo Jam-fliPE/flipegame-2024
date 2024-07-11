@@ -523,6 +523,42 @@ PrefabInstance:
       propertyPath: _spawnReference
       value: 
       objectReference: {fileID: 889054777}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._spawnReference
+      value: 
+      objectReference: {fileID: 889054777}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[1]._spawnReference
+      value: 
+      objectReference: {fileID: 889054777}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[1]._enemiesPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[1]._enemiesPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[1]._enemiesPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
     - target: {fileID: 9120214111795551078, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1419,6 +1455,30 @@ PrefabInstance:
       propertyPath: _spawnReference
       value: 
       objectReference: {fileID: 1995716737}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._spawnReference
+      value: 
+      objectReference: {fileID: 1995716737}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
+    - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
+      propertyPath: _waveData.Array.data[0]._enemiesPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 4621019572744221258, guid: 332103c06279f85488f668095957e7af, type: 3}
     - target: {fileID: 9120214111795551078, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
       propertyPath: m_IsTrigger
       value: 1

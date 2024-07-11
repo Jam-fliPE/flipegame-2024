@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
+public delegate void AllEnemiesDeadDelegate();
+
 public class EnemiesWaveManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _enemyPrefab;
     [SerializeField]
     float _spawnRadius = 3.0f;
 
@@ -12,19 +12,31 @@ public class EnemiesWaveManager : MonoBehaviour
 
     public static EnemiesWaveManager Instance { get; private set; }
 
+    public event AllEnemiesDeadDelegate _onAllEnemiesDead;
+
     private void Awake()
     {
         Instance = this;
         _enemies = new ArrayList();
     }
 
-    public void SpawnWave(Transform referenceTransform, int count)
+    public void SpawnWave(EnemiesWaveData waveData)
     {
-        for (int i = 0; i < count; i++)
+        foreach (GameObject item in waveData._enemiesPrefab)
         {
-            Vector3 position = GetRandomSpawnPoint(referenceTransform.position);
-            GameObject enemy = Instantiate(_enemyPrefab, position, referenceTransform.rotation);
+            Vector3 position = GetRandomSpawnPoint(waveData._spawnReference.position);
+            GameObject enemy = Instantiate(item, position, waveData._spawnReference.rotation);
             _enemies.Add(enemy.GetComponent<AIController>());
+        }
+    }
+
+    public void OnEnemyDead(AIController enemy)
+    {
+        _enemies.Remove(enemy);
+
+        if (_enemies.Count == 0)
+        {
+            _onAllEnemiesDead?.Invoke();
         }
     }
 
