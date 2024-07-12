@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BaseMovementState : AControllerState
 {
@@ -15,26 +16,33 @@ public class BaseMovementState : AControllerState
         _combatController ??= controller.GetComponent<CombatController>();
     }
 
-    public override void OnUpdate(PlayerController controller)
+    public override void OnMove(PlayerController controller, InputAction.CallbackContext context)
     {
-        base.OnUpdate(controller);
-
-        _inputDirection.Set(0.0f, 0.0f, 0.0f);
-
-        _inputDirection.z = Input.GetAxis("Horizontal");
-        _inputDirection.x = -Input.GetAxis("Vertical");
-
-        _inputDirection.Normalize();
-
-
-        if (Input.GetButtonDown("Fire1"))
+        if (context.performed)
         {
-            _inputDirection.Set(0.0f, 0.0f, 0.0f);
+            Vector2 inputVector = context.ReadValue<Vector2>();
+            _inputDirection.z = inputVector.x;
+            _inputDirection.x = -inputVector.y;
+
+            _inputDirection.Normalize();
+
+            _movement.SetDirection(_inputDirection);
+        }
+        else if (context.canceled)
+        {
+            _movement.SetDirection(Vector3.zero);
+        }
+    }
+
+    public override void OnLightAttack(PlayerController controller, InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _movement.SetDirection(Vector3.zero);
+
             Action callback = () => { controller.ChangeState(EControllerState.BaseMovement); };
             _combatController.LightAttack(callback);
             controller.ChangeState(EControllerState.NoInput);
         }
-
-        _movement.SetDirection(_inputDirection);
     }
 }

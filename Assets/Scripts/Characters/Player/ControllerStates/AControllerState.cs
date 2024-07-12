@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum EControllerState
 {
@@ -18,4 +19,7 @@ public abstract class AControllerState
             ScreenManager.Instance.LoadMainMenu();
         }
     }
+
+    public virtual void OnMove(PlayerController controller, InputAction.CallbackContext context) { }
+    public virtual void OnLightAttack(PlayerController controller, InputAction.CallbackContext context) { }
 }

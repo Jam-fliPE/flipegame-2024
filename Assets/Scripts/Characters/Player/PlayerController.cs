@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,5 +21,15 @@ public class PlayerController : MonoBehaviour
     {
         _state = _statesFactory.Resolve(stateType);
         _state.OnEnter(this);
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        _state.OnMove(this, context); ;
+    }
+
+    public void LightAttack(InputAction.CallbackContext context)
+    {
+        _state.OnLightAttack(this, context);
     }
 }

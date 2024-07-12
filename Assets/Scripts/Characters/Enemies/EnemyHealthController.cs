@@ -8,6 +8,7 @@ public class EnemyHealthController : HealthController
     protected override void OnDie()
     {
         AIController controller = GetComponent<AIController>();
+        controller.StopAllCoroutines();
         EnemiesWaveManager.Instance.OnEnemyDead(controller);
         Destroy(gameObject, 2.0f);
     }
