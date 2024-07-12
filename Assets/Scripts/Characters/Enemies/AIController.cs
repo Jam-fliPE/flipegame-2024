@@ -8,10 +8,11 @@ public class AIController : MonoBehaviour
     private float _patrolDistance = 5.0f;
 
     public CharacterMovement MovementController { get; private set; }
-    public Transform PlayerTransform { get; private set; }
+    public Transform PlayerTransform { get; set; }
     public CombatController CombatController { get; private set; }
+    public HealthController HealthController { get; private set; }
+    public bool IsEngaged { get; set; }
 
-    private EnemyHealthController _healthController;
     private Vector3 _inputDirection = Vector3.zero;
     private Transform _transform;
     private BaseEnemyState _state;
@@ -23,7 +24,7 @@ public class AIController : MonoBehaviour
     {
         MovementController = GetComponent<CharacterMovement>();
         CombatController = GetComponent<CombatController>();
-        _healthController = GetComponent<EnemyHealthController>();
+        HealthController = GetComponent<EnemyHealthController>();
         _transform = transform;
         GameObject player = GameplayManager.Instance.GetPlayer();
         PlayerTransform = player.transform;
@@ -33,7 +34,7 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        if (_healthController.IsAlive())
+        if (HealthController.IsAlive())
         {
             _transform.LookAt(PlayerTransform.position, Vector3.up);
             _state.OnUpdate(this);

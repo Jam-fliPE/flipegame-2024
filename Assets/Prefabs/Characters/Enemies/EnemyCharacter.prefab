@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3380634641779182393, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+      propertyPath: _speed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -97,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d15ffa679cad284693eb06e08f39a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackDistance: 2
+  _patrolDistance: 5
 --- !u!114 &5418091353482414341
 MonoBehaviour:
   m_ObjectHideFlags: 0

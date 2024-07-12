@@ -9,7 +9,7 @@ public class MoveToPlayerState : BaseEnemyState
         {
             controller.ChangeState(new AttackState());
         }
-        else
+        else if (controller.IsEngaged)
         {
             Vector3 direction = targetPosition - controller.transform.position;
             direction.Normalize();

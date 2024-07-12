@@ -1,26 +1,26 @@
+using System.Collections;
 using UnityEngine;
 
 public class PatrolState : BaseEnemyState
 {
-    private Vector3 _targetPosition;
-
     public override void OnEnter(AIController controller)
     {
         Vector3 currentPosition = controller.transform.position;
-        float newXOffset = Random.Range(-controller.PatrolDistance * 0.5f, controller.PatrolDistance * 0.5f);
-        float newZOffset = Random.Range(-controller.PatrolDistance, controller.PatrolDistance);
+        float x = Random.Range(-0.5f, 0.5f);
+        float z = Random.Range(-1.0f, 1.0f);
 
-        _targetPosition = currentPosition + new Vector3(newXOffset, 0.0f, newZOffset);
-        Vector3 direction = _targetPosition - controller.transform.position;
+        Vector3 direction = new Vector3(x, 0.0f, z);
         direction.Normalize();
         controller.MovementController.SetDirection(direction);
+
+        controller.StartCoroutine(WaitAndChangeState(controller));
     }
 
-    public override void OnUpdate(AIController controller)
+    private IEnumerator WaitAndChangeState(AIController controller)
     {
-        if (Vector3.Distance(_targetPosition, controller.transform.position) < 0.5f)
-        {
-            controller.ChangeState(new IdleState());
-        }
+        float time = Random.Range(1.0f, 3.0f);
+        yield return new WaitForSeconds(time);
+
+        controller.ChangeState(new IdleState());
     }
 }

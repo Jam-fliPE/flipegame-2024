@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemiesWaveVolume : BaseInteractionVolume
@@ -17,13 +18,19 @@ public class EnemiesWaveVolume : BaseInteractionVolume
     {
         if (_index < _waveData.Length)
         {
-            SpawnNextWave();
+            StartCoroutine(WaitAndSpawnNextWave());
         }
         else
         {
             EnemiesWaveManager.Instance._onAllEnemiesDead -= OnAllEnemiesDead;
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator WaitAndSpawnNextWave()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SpawnNextWave();
     }
 
     private void SpawnNextWave()
