@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToPlayerState : MonoBehaviour
+public class MoveToPlayerState : BaseEnemyState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnUpdate(AIController controller)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Vector3 targetPosition = controller.PlayerTransform.position;
+        if (Vector3.Distance(targetPosition, controller.transform.position) < controller.AttackDistance)
+        {
+            controller.ChangeState(new AttackState());
+        }
+        else
+        {
+            Vector3 direction = targetPosition - controller.transform.position;
+            direction.Normalize();
+            controller.MovementController.SetDirection(direction);
+        }
     }
 }

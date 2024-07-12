@@ -17,7 +17,7 @@ public class CombatController : MonoBehaviour
         _animationController = GetComponent<AnimationController>();
     }
 
-    public void LightAttack(Action callback)
+    public void LightAttack(Action callback = null)
     {
         StartCoroutine(_animationController.PlayLightAttack(callback));
     }

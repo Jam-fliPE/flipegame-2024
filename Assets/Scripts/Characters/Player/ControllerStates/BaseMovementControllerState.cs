@@ -35,6 +35,6 @@ public class BaseMovementState : AControllerState
             controller.ChangeState(EControllerState.NoInput);
         }
 
-        _movement.SetDirection(ref _inputDirection);
+        _movement.SetDirection(_inputDirection);
     }
 }

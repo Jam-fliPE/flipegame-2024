@@ -32,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
         _animationController.SetDirection(ref _direction);
     }
 
-    public void SetDirection(ref Vector3 newDirection)
+    public void SetDirection(Vector3 newDirection)
     {
         _direction = newDirection;
     }

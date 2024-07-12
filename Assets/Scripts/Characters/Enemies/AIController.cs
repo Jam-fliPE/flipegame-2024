@@ -7,11 +7,13 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private float _patrolDistance = 5.0f;
 
-    private CharacterMovement _movement;
+    public CharacterMovement MovementController { get; private set; }
+    public Transform PlayerTransform { get; private set; }
+    public CombatController CombatController { get; private set; }
+
     private EnemyHealthController _healthController;
     private Vector3 _inputDirection = Vector3.zero;
     private Transform _transform;
-    private Transform _playerTransform;
     private BaseEnemyState _state;
 
     public float AttackDistance { get { return _attackDistance; } }
@@ -19,20 +21,21 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
-        _movement = GetComponent<CharacterMovement>();
+        MovementController = GetComponent<CharacterMovement>();
+        CombatController = GetComponent<CombatController>();
         _healthController = GetComponent<EnemyHealthController>();
         _transform = transform;
         GameObject player = GameplayManager.Instance.GetPlayer();
-        _playerTransform = player.transform;
+        PlayerTransform = player.transform;
 
-        _state = new PatrolState();
+        _state = new IdleState();
     }
 
     private void Update()
     {
         if (_healthController.IsAlive())
         {
-            _transform.LookAt(_playerTransform.position, Vector3.up);
+            _transform.LookAt(PlayerTransform.position, Vector3.up);
             _state.OnUpdate(this);
         }
     }

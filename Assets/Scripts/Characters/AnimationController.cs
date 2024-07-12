@@ -28,7 +28,7 @@ public class AnimationController : MonoBehaviour
         float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(duration);
 
-        callback();
+        callback?.Invoke();
     }
 
     public void PlayHitReaction()

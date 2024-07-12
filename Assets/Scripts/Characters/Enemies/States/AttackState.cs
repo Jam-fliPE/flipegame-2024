@@ -1,25 +1,26 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class AttackState : BaseEnemyState
 {
-    private CombatController _combatController;
+    private WaitForSeconds _attackDelay = new WaitForSeconds(1.0f);
 
     public override void OnEnter(AIController controller)
     {
-        _combatController ??= controller.GetComponent<CombatController>();
+        controller.StartCoroutine(WaitAndAttack(controller));
     }
 
-    private void Attack(AIController controller)
+    private IEnumerator WaitAndAttack(AIController controller)
     {
-        GameObject player = GameplayManager.Instance.GetPlayer();
-        if (Vector3.Distance(player.transform.position, controller.transform.position) < controller.AttackDistance)
-        {
-            _combatController.LightAttack(() => { Attack(controller); });
-        }
-        else
-        {
+        yield return _attackDelay;
+        Action callback = () => { controller.StartCoroutine(WaitForNextState(controller)); };
+        controller.CombatController.LightAttack(callback);
+    }
 
-        }
-
+    private IEnumerator WaitForNextState(AIController controller)
+    {
+        yield return _attackDelay;
+        controller.ChangeState(new IdleState());
     }
 }
