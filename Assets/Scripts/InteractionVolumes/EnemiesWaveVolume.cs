@@ -5,6 +5,8 @@ public class EnemiesWaveVolume : BaseInteractionVolume
 {
     [SerializeField]
     private EnemiesWaveData[] _waveData;
+    [SerializeField]
+    private float[] _horizontalLimits;
 
     private int _index = 0;
 
@@ -12,6 +14,11 @@ public class EnemiesWaveVolume : BaseInteractionVolume
     {
         EnemiesWaveManager.Instance._onAllEnemiesDead += OnAllEnemiesDead;
         SpawnNextWave();
+
+        BordersNavigationManager.Instance.SetHorizontalLimits
+        (
+            _horizontalLimits[0], _horizontalLimits[1]
+        );
     }
 
     private void OnAllEnemiesDead()
@@ -23,6 +30,7 @@ public class EnemiesWaveVolume : BaseInteractionVolume
         else
         {
             EnemiesWaveManager.Instance._onAllEnemiesDead -= OnAllEnemiesDead;
+            BordersNavigationManager.Instance.SetHorizontalLimits(_horizontalLimits[0], 99999.0f);
             Destroy(gameObject);
         }
     }
@@ -50,6 +58,17 @@ public class EnemiesWaveVolume : BaseInteractionVolume
                     Gizmos.DrawWireSphere(item._spawnReference.position, 3.0f);
                 }
             }
+        }
+
+        if (_horizontalLimits.Length == 2)
+        {
+            Vector3 left = new Vector3(4.0f, 2.0f, _horizontalLimits[0]);
+            Vector3 right = new Vector3(-4.0f, 2.0f, _horizontalLimits[0]);
+            Gizmos.DrawLine(left, right);
+
+            left = new Vector3(4.0f, 2.0f, _horizontalLimits[1]);
+            right = new Vector3(-4.0f, 2.0f, _horizontalLimits[1]);
+            Gizmos.DrawLine(left, right); ;
         }
     }
 }

@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     {
         _statesFactory = new ControllerStatesFactory();
         ChangeState(EControllerState.BaseMovement);
+
+        BordersNavigationManager.Instance.AddPlayer(transform);
     }
 
     private void Update()

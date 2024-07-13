@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void AllEnemiesDeadDelegate();
+public delegate void EnemyDeadDelegate(Transform enemyTransform);
+public delegate void EnemySpawnDelegate(Transform enemyTransform);
 
 public class EnemiesWaveManager : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class EnemiesWaveManager : MonoBehaviour
 
     public static EnemiesWaveManager Instance { get; private set; }
     public event AllEnemiesDeadDelegate _onAllEnemiesDead;
+    public event EnemyDeadDelegate _onEnemyDead;
+    public event EnemySpawnDelegate _onEnemySpawn;
 
     private List<AIController> _enemies;
     private WaitForSeconds _engagementDelay;
@@ -29,6 +33,7 @@ public class EnemiesWaveManager : MonoBehaviour
             Vector3 position = GetRandomSpawnPoint(waveData._spawnReference.position);
             GameObject enemy = Instantiate(item, position, waveData._spawnReference.rotation);
             _enemies.Add(enemy.GetComponent<AIController>());
+            _onEnemySpawn?.Invoke(enemy.transform);
         }
 
         StartCoroutine(RefreshEngagement());
@@ -36,6 +41,7 @@ public class EnemiesWaveManager : MonoBehaviour
 
     public void OnEnemyDead(AIController enemy)
     {
+        _onEnemyDead?.Invoke(enemy.transform);
         _enemies.Remove(enemy);
 
         if (_enemies.Count == 0)
