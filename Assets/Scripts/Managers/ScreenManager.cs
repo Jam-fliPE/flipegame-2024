@@ -7,6 +7,11 @@ public class ScreenManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
+
         Instance = this;
     }
 
