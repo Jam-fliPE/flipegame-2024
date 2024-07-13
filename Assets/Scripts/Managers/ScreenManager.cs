@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class ScreenManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _victoryScreen;
+    [SerializeField]
+    private GameObject _defeatScreen;
+
     public static ScreenManager Instance { get; private set; }
 
     private void Awake()
@@ -33,5 +38,15 @@ public class ScreenManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void LoadVictoryScreen()
+    {
+        Instantiate(_victoryScreen);
+    }
+
+    public void LoadDefeatScreen()
+    {
+        Instantiate(_defeatScreen);
     }
 }

@@ -4,6 +4,11 @@ public class PlayerHealthController : HealthController
 {
     protected override void OnDie()
     {
-        Debug.Log("GAME OVER");
+        Invoke("LoadDefeat", 3.0f);
+    }
+
+    private void LoadDefeat()
+    {
+        ScreenManager.Instance.LoadDefeatScreen();
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class AIController : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class AIController : MonoBehaviour
     public Transform PlayerTransform { get; set; }
     public CombatController CombatController { get; private set; }
     public HealthController HealthController { get; private set; }
+    public PlayerHealthController PlayerHealthController { get; private set; }
     public bool IsEngaged { get; set; }
 
-    private Vector3 _inputDirection = Vector3.zero;
     private Transform _transform;
     private BaseEnemyState _state;
 
@@ -28,6 +29,7 @@ public class AIController : MonoBehaviour
         _transform = transform;
         GameObject player = GameplayManager.Instance.GetPlayer();
         PlayerTransform = player.transform;
+        PlayerHealthController = player.GetComponent<PlayerHealthController>();
 
         _state = new IdleState();
     }
@@ -45,5 +47,10 @@ public class AIController : MonoBehaviour
     {
         _state = newState;
         _state.OnEnter(this);
+    }
+
+    public bool AreCharactersAlive()
+    {
+        return (HealthController.IsAlive() && PlayerHealthController.IsAlive());
     }
 }

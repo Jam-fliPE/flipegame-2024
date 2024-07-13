@@ -16,19 +16,21 @@ public class IdleState : BaseEnemyState
     {
         _waitTime += Time.deltaTime;
 
-
-        if (Vector3.Distance(controller.PlayerTransform.position, controller.transform.position) < controller.AttackDistance)
+        if (controller.AreCharactersAlive())
         {
-            controller.ChangeState(new AttackState());
-        }
-        else if (controller.IsEngaged)
-        {
-            controller.ChangeState(new MoveToPlayerState());
-        }
-        else if (_waitTime > MAX_WAIT_TIME)
-        {
-            _waitTime = 0.0f;
-            controller.ChangeState(new PatrolState());
+            if (Vector3.Distance(controller.PlayerTransform.position, controller.transform.position) < controller.AttackDistance)
+            {
+                controller.ChangeState(new AttackState());
+            }
+            else if (controller.IsEngaged)
+            {
+                controller.ChangeState(new MoveToPlayerState());
+            }
+            else if (_waitTime > MAX_WAIT_TIME)
+            {
+                _waitTime = 0.0f;
+                controller.ChangeState(new PatrolState());
+            }
         }
     }
 }

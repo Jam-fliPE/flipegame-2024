@@ -14,7 +14,7 @@ public class AttackState : BaseEnemyState
 
     private IEnumerator WaitAndAttack(AIController controller)
     {
-        if (controller.HealthController.IsAlive())
+        if (controller.HealthController.IsAlive() && controller.PlayerHealthController.IsAlive())
         {
             yield return _attackDelay;
             Action callback = () => { controller.StartCoroutine(WaitForNextState(controller)); };
@@ -24,7 +24,7 @@ public class AttackState : BaseEnemyState
 
     private IEnumerator WaitForNextState(AIController controller)
     {
-        if (controller.HealthController.IsAlive())
+        if (controller.AreCharactersAlive())
         {
             yield return _attackDelay;
             controller.ChangeState(new IdleState());

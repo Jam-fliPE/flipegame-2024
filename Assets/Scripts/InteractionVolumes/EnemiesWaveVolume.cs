@@ -7,6 +7,8 @@ public class EnemiesWaveVolume : BaseInteractionVolume
     private EnemiesWaveData[] _waveData;
     [SerializeField]
     private float[] _horizontalLimits;
+    [SerializeField]
+    private bool _finalWave = false;
 
     private int _index = 0;
 
@@ -31,6 +33,11 @@ public class EnemiesWaveVolume : BaseInteractionVolume
         {
             EnemiesWaveManager.Instance._onAllEnemiesDead -= OnAllEnemiesDead;
             BordersNavigationManager.Instance.SetHorizontalLimits(_horizontalLimits[0], 99999.0f);
+
+            if (_finalWave )
+            {
+                ScreenManager.Instance.LoadVictoryScreen();
+            }
             Destroy(gameObject);
         }
     }
