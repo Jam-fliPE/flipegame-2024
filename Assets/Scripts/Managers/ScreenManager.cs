@@ -25,7 +25,7 @@ public class ScreenManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void MainMenuPlay()
+    public void LoadGame()
     {
         SceneManager.LoadScene("Game");
     }

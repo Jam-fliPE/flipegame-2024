@@ -12,13 +12,7 @@ public abstract class AControllerState
 {
     public virtual void OnEnter(PlayerController controller) { }
     
-    public virtual void OnUpdate(PlayerController controller)
-    {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            ScreenManager.Instance.LoadMainMenu();
-        }
-    }
+    public virtual void OnUpdate(PlayerController controller) { }
 
     public virtual void OnMove(PlayerController controller, InputAction.CallbackContext context) { }
     public virtual void OnLightAttack(PlayerController controller, InputAction.CallbackContext context) { }
