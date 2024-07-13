@@ -3,6 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private int _playerIndex = 0;
+
+    public Vector2 InputVector { get; private set; }
+
     private AControllerState _state;
     private ControllerStatesFactory _statesFactory;
 
@@ -17,6 +22,11 @@ public class PlayerController : MonoBehaviour
         _state.OnUpdate(this);
     }
 
+    public int GetPlayerIndex()
+    {
+        return _playerIndex;
+    }
+
     public void ChangeState(EControllerState stateType)
     {
         _state = _statesFactory.Resolve(stateType);
@@ -25,7 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        _state.OnMove(this, context); ;
+        InputVector = context.ReadValue<Vector2>();
+        _state.OnMove(this, context);
     }
 
     public void LightAttack(InputAction.CallbackContext context)

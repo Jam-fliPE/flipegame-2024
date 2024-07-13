@@ -16,16 +16,19 @@ public abstract class HealthController : MonoBehaviour
 
     public void TakeDamage(Transform enemyTransform, int damage)
     {
-        transform.LookAt(enemyTransform.position);
+        if (IsAlive())
+        {
+            transform.LookAt(enemyTransform.position);
 
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            _animationController.PlayHitReaction();
+            _currentHealth -= damage;
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                _animationController.PlayHitReaction();
+            }
         }
     }
 
