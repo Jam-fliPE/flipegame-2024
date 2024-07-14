@@ -23,6 +23,7 @@ public class AnimationController : MonoBehaviour
     {
         int index = UnityEngine.Random.Range(0, _lightAttacks.Length);
         _animator.Play(_lightAttacks[index]);
+        SoundManager.Instance.PlayLightAttack();
         yield return null;
 
         float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
@@ -40,5 +41,11 @@ public class AnimationController : MonoBehaviour
     public void PlayDeath()
     {
         _animator.SetTrigger("death");
+    }
+
+    // Called by walk animation
+    public void OnFootstepEvent()
+    {
+        SoundManager.Instance.PlayFootStep();
     }
 }
