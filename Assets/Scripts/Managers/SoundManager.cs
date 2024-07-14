@@ -29,9 +29,14 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void PlayBackground()
+    public void PlayGameplayBgm()
     {
-        PlayBgm(_audioClips._background);
+        PlayBgm(_audioClips._gameplayBgm);
+    }
+
+    public void PlayMenuBgm()
+    {
+        PlayBgm(_audioClips._menuBgm);
     }
 
     public void PlayMenuNavigation()
@@ -46,7 +51,23 @@ public class SoundManager : MonoBehaviour
 
     public void PlayLightAttack()
     {
-        // PlaySfx(_audioClips._lightAttack);
+        PlaySfx(GetRandomClip(_audioClips._attacks));
+        PlaySfx(GetRandomClip(_audioClips._clothMovements));
+    }
+
+    public void PlaySwordHit()
+    {
+        PlaySfx(GetRandomClip(_audioClips._swordHits));
+    }
+
+    public void PlayHardHit()
+    {
+        PlaySfx(GetRandomClip(_audioClips._hardHits));
+    }
+
+    public void PlayFootStep()
+    {
+        PlaySfx(GetRandomClip(_audioClips._footsteps));
     }
 
     private void PlaySfx(AudioClip clip)
@@ -60,10 +81,11 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource source = GetNextSource(_bgmSources, ref _bgmIndex);
         source.clip = clip;
+        source.loop = true;
         source.Play();
     }
 
-    private AudioClip GetRandomSound(AudioClip[] clips)
+    private AudioClip GetRandomClip(AudioClip[] clips)
     {
         int index = Random.Range(0, clips.Length);
         return clips[index];

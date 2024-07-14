@@ -13,7 +13,12 @@ public class GameplayManager : MonoBehaviour
     {
         Instance = this;
     }
-    
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayGameplayBgm();
+    }
+
     public GameObject GetPlayer()
     {
         int index = Random.Range(0, 1);

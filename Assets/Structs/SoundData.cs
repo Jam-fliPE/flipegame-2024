@@ -7,10 +7,11 @@ public class SoundData
     public AudioClip[] _clothMovements;
     public AudioClip[] _attacks;
     public AudioClip[] _swordHits;
-    public AudioClip[] _gunHits;
+    public AudioClip[] _hardHits;
     public AudioClip[] _footsteps;
     
-    public AudioClip _background;
+    public AudioClip _menuBgm;
+    public AudioClip _gameplayBgm;
     public AudioClip _menuButtonsNavigtion;
     public AudioClip _menuButtonSelection;
 }

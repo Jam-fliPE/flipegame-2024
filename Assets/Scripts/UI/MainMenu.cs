@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +35,8 @@ public class MainMenu : MonoBehaviour
     private Image _previousButton;
     private TextMeshProUGUI _previousText;
 
+    private bool _navigationEnabled;
+
     private void Start()
     {
         _buttons = new Image[4] { _startButton, _controlsButton, _creditsButton, _quitButton };
@@ -43,12 +47,13 @@ public class MainMenu : MonoBehaviour
         _previousButton = null;
         _previousText = null;
         SetSelection(_startButton, _startText, false);
-        SoundManager.Instance.PlayBackground();
+        SoundManager.Instance.PlayMenuBgm();
+        _navigationEnabled = true;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (_navigationEnabled && context.performed)
         {
             Vector2 direction = context.ReadValue<Vector2>();
             if (direction.y > 0.5f)
@@ -89,24 +94,36 @@ public class MainMenu : MonoBehaviour
 
     public void Select(InputAction.CallbackContext context)
     {
-        ScreenManager screenManager = ScreenManager.Instance;
-        if (_currentButton == _startButton)
+        if (_navigationEnabled)
         {
-            screenManager.LoadGame();
-        }
-        else if (_currentButton == _controlsButton)
-        {
+            SoundManager.Instance.PlayMenuSelection();
 
-        }
-        else if (_currentButton == _creditsButton)
-        {
+            ScreenManager screenManager = ScreenManager.Instance;
+            if (_currentButton == _startButton)
+            {
+                StartCoroutine(WaitAndCallAction(() => screenManager.LoadGame()));
+            }
+            else if (_currentButton == _controlsButton)
+            {
 
-        }
-        else if (_currentButton == _quitButton)
-        {
-            screenManager.MainMenuQuit();
-        }
+            }
+            else if (_currentButton == _creditsButton)
+            {
 
+            }
+            else if (_currentButton == _quitButton)
+            {
+                StartCoroutine(WaitAndCallAction(() => screenManager.MainMenuQuit()));
+            }
+        }
+    }
+
+    private IEnumerator WaitAndCallAction(Action action)
+    {
+        _navigationEnabled = false;
+        _currentButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        action();
     }
 
     private void ResetSelection()
