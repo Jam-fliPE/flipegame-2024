@@ -42,7 +42,8 @@ public class MainMenu : MonoBehaviour
         _currentText = _controlsText;
         _previousButton = null;
         _previousText = null;
-        SetSelection(_startButton, _startText);
+        SetSelection(_startButton, _startText, false);
+        SoundManager.Instance.PlayBackground();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -121,7 +122,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void SetSelection(Image button, TextMeshProUGUI text)
+    private void SetSelection(Image button, TextMeshProUGUI text, bool playSound = true)
     {
         if (_currentButton != button)
         {
@@ -134,6 +135,11 @@ public class MainMenu : MonoBehaviour
 
             _currentButton.color = Color.green;
             _currentText.color = Color.green;
+
+            if (playSound)
+            {
+                SoundManager.Instance.PlayMenuNavigation();
+            }
         }
     }
 }
