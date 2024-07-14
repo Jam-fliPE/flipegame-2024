@@ -8,6 +8,12 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _controlsPanel;
+
+    [SerializeField]
+    private GameObject _creditsPanel;
+
+    [SerializeField]
     private Image _startButton;
     [SerializeField]
     private TextMeshProUGUI _startText;
@@ -110,11 +116,11 @@ public class MainMenu : MonoBehaviour
             }
             else if (_currentButton == _controlsButton)
             {
-
+                StartCoroutine(WaitAndCallAction(() => _controlsPanel.SetActive(true)));
             }
             else if (_currentButton == _creditsButton)
             {
-
+                StartCoroutine(WaitAndCallAction(() => _creditsPanel.SetActive(true)));
             }
             else if (_currentButton == _quitButton)
             {
@@ -128,6 +134,8 @@ public class MainMenu : MonoBehaviour
         _navigationEnabled = false;
         _currentButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
         yield return new WaitForSeconds(1.0f);
+        _currentButton.transform.localScale = Vector3.one;
+        _navigationEnabled = true;
         action();
     }
 
