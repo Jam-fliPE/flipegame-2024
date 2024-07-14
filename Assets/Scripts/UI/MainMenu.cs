@@ -92,6 +92,11 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void CommandStart(InputAction.CallbackContext context)
+    {
+        Select(context);
+    }
+
     public void Select(InputAction.CallbackContext context)
     {
         if (_navigationEnabled)

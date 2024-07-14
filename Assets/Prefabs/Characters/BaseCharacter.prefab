@@ -1099,10 +1099,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackPoint: {fileID: 3620596251456603367}
-  _attackRange: 0.5
+  _attackRange: 0.75
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  _weaponType: 0
 --- !u!1 &2686890238580948236
 GameObject:
   m_ObjectHideFlags: 0
