@@ -75,7 +75,7 @@ public class EnemiesWaveManager : MonoBehaviour
 
         while (_enemies.Count > 1)
         {
-            SetClosestEnemyEngaged();
+            SetRandomEnemiesEngaged();
             yield return _engagementDelay;
         }
     }
@@ -101,5 +101,29 @@ public class EnemiesWaveManager : MonoBehaviour
         {
             closestEnemy.IsEngaged = true;
         }
+    }
+
+    private void ResetEngagement()
+    {
+        foreach (AIController item in _enemies)
+        {
+            item.IsEngaged = false;
+        }
+    }
+
+    private void SetRandomEnemiesEngaged()
+    {
+        ResetEngagement();
+
+        int index = Random.Range(0, _enemies.Count);
+        _enemies[index].IsEngaged = true;
+
+        index++;
+        if (index >= _enemies.Count)
+        {
+            index = 0;
+        }
+
+        _enemies[index].IsEngaged = true;
     }
 }

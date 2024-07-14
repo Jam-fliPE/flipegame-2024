@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class AIController : MonoBehaviour
 {
     [SerializeField]
-    private float _attackDistance = 2.0f;
+    private float _attackDistance = 1.5f;
     [SerializeField]
     private float _patrolDistance = 5.0f;
 
