@@ -14,11 +14,11 @@ public abstract class HealthController : MonoBehaviour
         _animationController = GetComponent<AnimationController>();
     }
 
-    public void TakeDamage(Transform enemyTransform, int damage)
+    public void TakeDamage(Transform opponentTransform, int damage)
     {
         if (IsAlive())
         {
-            transform.LookAt(enemyTransform.position);
+            transform.LookAt(opponentTransform.position, Vector3.up);
 
             _currentHealth -= damage;
             if (_currentHealth <= 0)
@@ -28,6 +28,7 @@ public abstract class HealthController : MonoBehaviour
             else
             {
                 _animationController.PlayHitReaction();
+                OnTakeDamage(opponentTransform);
             }
         }
     }
@@ -37,6 +38,7 @@ public abstract class HealthController : MonoBehaviour
         return (_currentHealth > 0);
     }
 
+    protected virtual void OnTakeDamage(Transform opponentTransform) { }
     protected abstract void OnDie();
 
     private void Die()
