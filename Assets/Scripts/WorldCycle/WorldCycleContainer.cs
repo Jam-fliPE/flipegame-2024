@@ -46,11 +46,6 @@ public class WorldCycleContainer : MonoBehaviour
         foreach (Transform item in _players)
         {
             item.SetParent(_containers[_currentIndex], true);
-            /*
-            position = item.position;
-            position.z = position.z - _secondContainerPosition;
-            item.position = position;
-            */
         }
 
         position = currentContainer.position;
@@ -61,6 +56,17 @@ public class WorldCycleContainer : MonoBehaviour
         position.z = _secondContainerPosition;
         previousContainer.position = position;
 
+        RandomizeItems();
+
         Physics.SyncTransforms();
+    }
+
+    private void RandomizeItems()
+    {
+        for (int i = 0; i < _containers.Length; i++)
+        {
+            RandomTransformItems items = _containers[i].GetComponent<RandomTransformItems>();
+            items.Randomize();
+        }
     }
 }
