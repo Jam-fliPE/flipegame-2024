@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +9,9 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         _playerinput = GetComponent<PlayerInput>();
-        PlayerController[] controllers = FindObjectsOfType<PlayerController>();
         int index = _playerinput.playerIndex;
-        _playercontroller = controllers.FirstOrDefault(m => m.GetPlayerIndex() == index);
+        GameObject player = GameplayManager.Instance.InstantiatePlayer(index);
+        _playercontroller = player.GetComponent<PlayerController>();
     }
 
     public void Move(InputAction.CallbackContext context)
