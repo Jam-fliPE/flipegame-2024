@@ -13,7 +13,6 @@ public class WorldCycleContainer : MonoBehaviour
 
     private int _currentIndex;
     private float _secondContainerPosition;
-
     private void Start()
     {
         _secondContainerPosition = _containers[1].position.z;
@@ -55,7 +54,7 @@ public class WorldCycleContainer : MonoBehaviour
         }
 
         position = currentContainer.position;
-        position.z = 0;
+        position.z = 0.0f;
         currentContainer.position = position;
 
         position = previousContainer.position;
