@@ -66,6 +66,11 @@ public class GameplayManager : MonoBehaviour
         return result;
     }
 
+    public Transform GetCameraTransform()
+    {
+        return _cameraTransform;
+    }
+
     public int GetPlayersCount()
     {
         return _players.Count;

@@ -28,7 +28,7 @@ public class JoinMessageController : MonoBehaviour
         }
     }
 
-    private void OnPlayerInstantiated(Transform transform)
+    private void OnPlayerInstantiated(Transform playerTransform)
     {
         int playersCount = GameplayManager.Instance.GetPlayersCount();
         if (playersCount >= 2)
