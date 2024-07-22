@@ -21,10 +21,17 @@ public class RandomTransformItems : MonoBehaviour
         for (int i = 0; i < _items.Length; i++)
         {
             Transform itemTransform = _items[i];
-            Vector3 position = Vector3.zero;
+            bool itemActive = false;
+            if (Random.value > 0.5f)
+            {
+                itemActive = true;
+                Vector3 position = Vector3.zero;
 
-            position.z = Random.Range(-_positionRange, _positionRange);
-            itemTransform.position =  _transform.position + _initialPositions[i] + position;
+                position.z = Random.Range(-_positionRange, _positionRange);
+                itemTransform.position = _transform.position + _initialPositions[i] + position;
+            }
+            
+            itemTransform.gameObject.SetActive(itemActive);
         }
     }
 
