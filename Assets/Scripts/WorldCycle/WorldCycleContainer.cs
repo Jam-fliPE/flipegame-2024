@@ -56,17 +56,8 @@ public class WorldCycleContainer : MonoBehaviour
         position.z = _secondContainerPosition;
         previousContainer.position = position;
 
-        RandomizeItems();
+        previousContainer.GetComponent<RandomTransformItems>().Randomize();
 
         Physics.SyncTransforms();
-    }
-
-    private void RandomizeItems()
-    {
-        for (int i = 0; i < _containers.Length; i++)
-        {
-            RandomTransformItems items = _containers[i].GetComponent<RandomTransformItems>();
-            items.Randomize();
-        }
     }
 }
