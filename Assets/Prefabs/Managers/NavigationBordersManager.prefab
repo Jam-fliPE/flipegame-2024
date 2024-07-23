@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a966eaa9105a248ab47fb02534f465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalLimit:
-  - 4
-  - -4
-  _horizontalLimit:
+  _verticalLimits:
+  - -3
+  - 3
+  _horizontalLimits:
   - -5
   - 20

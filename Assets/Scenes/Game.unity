@@ -2520,7 +2520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 940619605965108458, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5885576392405455285, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
       propertyPath: m_LocalScale.x
@@ -2588,7 +2588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
       propertyPath: _horizontalLimits.Array.data[0]
-      value: -1.5
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 7566630864884833444, guid: 3e47450799267964fa067cc7f7eadfdb, type: 3}
       propertyPath: _horizontalLimits.Array.data[1]
@@ -5521,20 +5521,8 @@ PrefabInstance:
       value: NavigationBordersManager
       objectReference: {fileID: 0}
     - target: {fileID: 9157889463135524341, guid: 293790a17416d854f8d81fc2d308f682, type: 3}
-      propertyPath: _verticalLimits.Array.data[0]
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157889463135524341, guid: 293790a17416d854f8d81fc2d308f682, type: 3}
-      propertyPath: _verticalLimits.Array.data[1]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157889463135524341, guid: 293790a17416d854f8d81fc2d308f682, type: 3}
       propertyPath: _horizontalLimits.Array.data[0]
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157889463135524341, guid: 293790a17416d854f8d81fc2d308f682, type: 3}
-      propertyPath: _horizontalLimits.Array.data[1]
-      value: 100
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
