@@ -5,5 +5,5 @@ using UnityEngine;
 public class EnemiesWaveData
 {
     public GameObject[] _enemiesPrefab;
-    public Transform _spawnReference;
+    public int _spawnSide = 1;
 }

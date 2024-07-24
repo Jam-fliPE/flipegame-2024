@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     private float _rotationSpeed = 10.0f;
 
     private CharacterController _characterController;
+    private HealthController _healthController;
     private Transform _transform;
     private AnimationController _animationController;
     private Vector3 _direction = Vector3.zero;
@@ -16,20 +17,28 @@ public class CharacterMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _animationController = GetComponent<AnimationController>();
+        _healthController = GetComponent<HealthController>();
         _transform = transform;
     }
 
     private void Update()
     {
-        if (_direction != Vector3.zero)
+        if (_healthController.IsAlive())
         {
-            _transform.forward = Vector3.Slerp(_transform.forward, _direction, Time.deltaTime * _rotationSpeed);
+            if (_direction != Vector3.zero)
+            {
+                _transform.forward = Vector3.Slerp(_transform.forward, _direction, Time.deltaTime * _rotationSpeed);
+            }
+
+            Vector3 velocity = _direction * _speed * Time.deltaTime;
+            if (!_characterController.isGrounded)
+            {
+                velocity.y = -1.0f;
+            }
+            _characterController.Move(velocity);
+
+            _animationController.SetDirection(ref _direction);
         }
-
-        Vector3 velocity = _direction * _speed * Time.deltaTime;
-        _characterController.Move(velocity);
-
-        _animationController.SetDirection(ref _direction);
     }
 
     public void SetDirection(Vector3 newDirection)

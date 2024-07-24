@@ -26,12 +26,12 @@ public class EnemiesWaveManager : MonoBehaviour
         _engagementDelay = new WaitForSeconds(3.0f);
     }
 
-    public void SpawnWave(EnemiesWaveData waveData)
+    public void SpawnWave(EnemiesWaveData waveData, Vector3 referencePosition)
     {
         foreach (GameObject item in waveData._enemiesPrefab)
         {
-            Vector3 position = GetRandomSpawnPoint(waveData._spawnReference.position);
-            GameObject enemy = Instantiate(item, position, waveData._spawnReference.rotation);
+            Vector3 position = GetRandomSpawnPoint(referencePosition);
+            GameObject enemy = Instantiate(item, position, Quaternion.identity);
             _enemies.Add(enemy.GetComponent<AIController>());
             _onEnemySpawn?.Invoke(enemy.transform);
         }

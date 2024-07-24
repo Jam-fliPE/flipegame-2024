@@ -48,7 +48,7 @@ public class GameplayManager : MonoBehaviour
         GameObject result;
 
         Vector3 position = _cameraTransform.position;
-        position.y = 0.0f;
+        position.y = 1.0f;
         position.x = -1.0f;
 
         GameObject playerPrefab = _playerPrefab1;

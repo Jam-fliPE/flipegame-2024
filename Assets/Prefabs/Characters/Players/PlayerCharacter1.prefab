@@ -130,9 +130,13 @@ PrefabInstance:
       propertyPath: _weaponType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 668057355849311398, guid: bc1c2bca32e4b354dafb6ab9c8f68308, type: 3}
+      propertyPath: _speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5950051503257728009, guid: bc1c2bca32e4b354dafb6ab9c8f68308, type: 3}
       propertyPath: _maxHealth
-      value: 50
+      value: 9999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

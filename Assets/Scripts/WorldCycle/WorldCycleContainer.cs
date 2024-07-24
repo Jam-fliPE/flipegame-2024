@@ -38,6 +38,8 @@ public class WorldCycleContainer : MonoBehaviour
 
     private void Cycle()
     {
+        BordersNavigationManager.Instance.ResetLimits();
+
         Transform previousContainer = _containers[_currentIndex];
         _currentIndex = (_currentIndex + 1) % _containers.Length;
         Transform currentContainer = _containers[_currentIndex];

@@ -7,15 +7,18 @@ public class BordersNavigationManager : MonoBehaviour
     private float[] _verticalLimits = { -4.0f, 4.0f };
 
     [SerializeField]
-    private float[] _horizontalLimits = { -5.0f, 20.0f };
+    private float[] _horizontalLimits = { -10.0f, 20.0f };
     private List<Transform> _players = new List<Transform>();
     private List<Transform> _enemies = new List<Transform>();
 
     public static BordersNavigationManager Instance { get; private set; }
 
+    private float[] _initialHorizontalLimits;
+
     private void Awake()
     {
         Instance = this;
+        _initialHorizontalLimits = new float[] { _horizontalLimits[0], _horizontalLimits[1] };
     }
 
     private void Start()
@@ -43,6 +46,12 @@ public class BordersNavigationManager : MonoBehaviour
     {
         _horizontalLimits[0] = left;
         _horizontalLimits[1] = right;
+    }
+
+    public void ResetLimits()
+    {
+        _horizontalLimits[0] = _initialHorizontalLimits[0];
+        _horizontalLimits[1] = _initialHorizontalLimits[1];
     }
 
     private void LateUpdate()

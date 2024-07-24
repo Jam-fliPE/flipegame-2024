@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class EnemiesWaveVolume : BaseInteractionVolume
 {
     [SerializeField]
     private EnemiesWaveData[] _waveData;
     [SerializeField]
-    private float[] _horizontalLimits;
+    private float _limitDistance = 8.0f;
+    [SerializeField]
+    private float _spawnDistance = 5.0f;
     [SerializeField]
     private bool _finalWave = false;
+
+    private float LeftLimit { get { return transform.position.z - _limitDistance; } }
+    private float RightLimit { get { return transform.position.z + _limitDistance; } }
 
     private int _index = 0;
 
@@ -19,7 +25,7 @@ public class EnemiesWaveVolume : BaseInteractionVolume
 
         BordersNavigationManager.Instance.SetHorizontalLimits
         (
-            _horizontalLimits[0], _horizontalLimits[1]
+            LeftLimit, RightLimit
         );
     }
 
@@ -32,7 +38,7 @@ public class EnemiesWaveVolume : BaseInteractionVolume
         else
         {
             EnemiesWaveManager.Instance._onAllEnemiesDead -= OnAllEnemiesDead;
-            BordersNavigationManager.Instance.SetHorizontalLimits(_horizontalLimits[0], 99999.0f);
+            BordersNavigationManager.Instance.SetHorizontalLimits(transform.position.z - _limitDistance, 99999.0f);
 
             if (_finalWave )
             {
@@ -50,7 +56,9 @@ public class EnemiesWaveVolume : BaseInteractionVolume
 
     private void SpawnNextWave()
     {
-        EnemiesWaveManager.Instance.SpawnWave(_waveData[_index]);
+        int spawnSide = _waveData[_index]._spawnSide;
+        Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * spawnSide);
+        EnemiesWaveManager.Instance.SpawnWave(_waveData[_index], position);
         _index++;
     }
 
@@ -60,22 +68,17 @@ public class EnemiesWaveVolume : BaseInteractionVolume
         {
             foreach (EnemiesWaveData item in _waveData)
             {
-                if (item._spawnReference != null)
-                {
-                    Gizmos.DrawWireSphere(item._spawnReference.position, 3.0f);
-                }
+                Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * item._spawnSide);
+                Gizmos.DrawWireSphere(position, 3.0f);
             }
         }
 
-        if (_horizontalLimits.Length == 2)
-        {
-            Vector3 left = new Vector3(4.0f, 2.0f, _horizontalLimits[0]);
-            Vector3 right = new Vector3(-4.0f, 2.0f, _horizontalLimits[0]);
-            Gizmos.DrawLine(left, right);
+        Vector3 left = new Vector3(4.0f, 2.0f, LeftLimit);
+        Vector3 right = new Vector3(-4.0f, 2.0f, LeftLimit);
+        Gizmos.DrawLine(left, right);
 
-            left = new Vector3(4.0f, 2.0f, _horizontalLimits[1]);
-            right = new Vector3(-4.0f, 2.0f, _horizontalLimits[1]);
-            Gizmos.DrawLine(left, right); ;
-        }
+        left = new Vector3(4.0f, 2.0f, RightLimit);
+        right = new Vector3(-4.0f, 2.0f, RightLimit);
+        Gizmos.DrawLine(left, right); ;
     }
 }
