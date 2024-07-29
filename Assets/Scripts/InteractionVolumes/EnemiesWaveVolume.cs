@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class EnemiesWaveVolume : BaseInteractionVolume
 {
@@ -40,17 +39,18 @@ public class EnemiesWaveVolume : BaseInteractionVolume
             EnemiesWaveManager.Instance._onAllEnemiesDead -= OnAllEnemiesDead;
             BordersNavigationManager.Instance.SetHorizontalLimits(transform.position.z - _limitDistance, 99999.0f);
 
+            _index = 0;
+
             if (_finalWave )
             {
                 ScreenManager.Instance.LoadVictoryScreen();
             }
-            Destroy(gameObject);
         }
     }
 
     private IEnumerator WaitAndSpawnNextWave()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         SpawnNextWave();
     }
 

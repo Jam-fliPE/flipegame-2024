@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class WorldCycleContainer : MonoBehaviour
@@ -61,5 +62,16 @@ public class WorldCycleContainer : MonoBehaviour
         previousContainer.GetComponent<RandomTransformItems>().Randomize();
 
         Physics.SyncTransforms();
+
+        ResetVolumeInteractions();
+    }
+
+    private void ResetVolumeInteractions()
+    {
+        BaseInteractionVolume[] volumes = FindObjectsOfType<BaseInteractionVolume>();
+        foreach (BaseInteractionVolume item in volumes)
+        {
+            item.ResetInteraction();
+        }
     }
 }
