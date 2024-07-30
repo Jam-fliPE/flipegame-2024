@@ -118,12 +118,15 @@ public class EnemiesWaveManager : MonoBehaviour
         int index = Random.Range(0, _enemies.Count);
         _enemies[index].IsEngaged = true;
 
-        index++;
-        if (index >= _enemies.Count)
+        if (GameplayManager.Instance.GetPlayersCount() > 1)
         {
-            index = 0;
-        }
+            index++;
+            if (index >= _enemies.Count)
+            {
+                index = 0;
+            }
 
-        _enemies[index].IsEngaged = true;
+            _enemies[index].IsEngaged = true;
+        }
     }
 }

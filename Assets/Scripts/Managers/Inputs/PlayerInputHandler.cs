@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         _playerinput = GetComponent<PlayerInput>();
         int index = _playerinput.playerIndex;
-        GameObject player = GameplayManager.Instance.InstantiatePlayer(index);
+        Transform player = GameplayManager.Instance.InstantiatePlayer(index);
         _playercontroller = player.GetComponent<PlayerController>();
     }
 

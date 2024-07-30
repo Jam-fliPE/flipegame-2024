@@ -8,9 +8,9 @@ public class AIController : MonoBehaviour
     private float _patrolDistance = 5.0f;
 
     public CharacterMovement MovementController { get; private set; }
-    public Transform PlayerTransform { get; set; }
     public CombatController CombatController { get; private set; }
     public HealthController HealthController { get; private set; }
+    public Transform PlayerTransform { get; private set; }
     public PlayerHealthController PlayerHealthController { get; private set; }
     public bool IsEngaged { get; set; }
 
@@ -26,9 +26,9 @@ public class AIController : MonoBehaviour
         CombatController = GetComponent<CombatController>();
         HealthController = GetComponent<EnemyHealthController>();
         _transform = transform;
-        GameObject player = GameplayManager.Instance.GetPlayer();
-        PlayerTransform = player.transform;
-        PlayerHealthController = player.GetComponent<PlayerHealthController>();
+
+        GameplayManager.Instance._onPlayerDeath += OnPlayerDeath;
+        SetPlayerTarget(GameplayManager.Instance.GetPlayer());
 
         _state = new IdleState();
     }
@@ -37,9 +37,18 @@ public class AIController : MonoBehaviour
     {
         if (HealthController.IsAlive())
         {
-            _transform.LookAt(PlayerTransform.position, Vector3.up);
-            _state.OnUpdate(this);
+            if ((PlayerHealthController != null) && PlayerHealthController.IsAlive())
+            {
+                _transform.LookAt(PlayerTransform.position, Vector3.up);
+                _state.OnUpdate(this);
+            }
         }
+    }
+
+    public void SetPlayerTarget(Transform playerTransform)
+    {
+        PlayerTransform = playerTransform;
+        PlayerHealthController = (playerTransform != null) ? PlayerTransform.GetComponent<PlayerHealthController>() : null;
     }
 
     public void ChangeState(BaseEnemyState newState)
@@ -50,6 +59,14 @@ public class AIController : MonoBehaviour
 
     public bool AreCharactersAlive()
     {
-        return (HealthController.IsAlive() && PlayerHealthController.IsAlive());
+        return (HealthController.IsAlive() && (PlayerHealthController != null) && PlayerHealthController.IsAlive());
+    }
+
+    private void OnPlayerDeath(Transform deadPlayer)
+    {
+        if (deadPlayer == PlayerTransform)
+        {
+            SetPlayerTarget(GameplayManager.Instance.GetPlayer());
+        }
     }
 }

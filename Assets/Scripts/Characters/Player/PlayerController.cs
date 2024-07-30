@@ -14,14 +14,12 @@ public class PlayerController : MonoBehaviour
     private ControllerStatesFactory _statesFactory;
     private Transform _transform;
     private CharacterController _characterController;
-    private CharacterMovement _movement;
 
     private void Start()
     {
         _transform = transform;
         _statesFactory = new ControllerStatesFactory();
         _characterController = GetComponent<CharacterController>();
-        _movement = GetComponent<CharacterMovement>();
         ChangeState(EControllerState.BaseMovement);
 
         BordersNavigationManager.Instance.AddPlayer(transform);

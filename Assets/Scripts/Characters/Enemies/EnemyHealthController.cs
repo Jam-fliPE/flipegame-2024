@@ -7,7 +7,7 @@ public class EnemyHealthController : HealthController
 
     protected override void OnTakeDamage(Transform opponentTransform)
     {
-        GetComponent<AIController>().PlayerTransform = opponentTransform;
+        GetComponent<AIController>().SetPlayerTarget(opponentTransform);
     }
 
     protected override void OnDie()

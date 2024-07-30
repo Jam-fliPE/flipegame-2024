@@ -18,7 +18,7 @@ public class PatrolState : BaseEnemyState
 
     private IEnumerator WaitAndChangeState(AIController controller)
     {
-        float time = Random.Range(1.0f, 3.0f);
+        float time = Random.Range(0.5f, 2.0f);
         yield return new WaitForSeconds(time);
 
         controller.ChangeState(new IdleState());

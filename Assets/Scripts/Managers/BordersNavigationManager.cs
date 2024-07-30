@@ -24,7 +24,7 @@ public class BordersNavigationManager : MonoBehaviour
     private void Start()
     {
         EnemiesWaveManager.Instance._onEnemySpawn += OnEnemySpawn;
-        EnemiesWaveManager.Instance._onEnemyDead -= OnEnemyDead;
+        EnemiesWaveManager.Instance._onEnemyDead += OnEnemyDead;
     }
 
     public void AddPlayer(Transform item)
@@ -32,14 +32,9 @@ public class BordersNavigationManager : MonoBehaviour
         _players.Add(item);
     }
 
-    public void AddEnemy(Transform item)
+    public void RemovePlayer(Transform item)
     {
-        _enemies.Add(item);
-    }
-
-    public void RemoveEnemy(Transform item)
-    {
-        _enemies.Remove(item);
+        _players.Remove(item);
     }
 
     public void SetHorizontalLimits(float left, float right)
@@ -66,7 +61,7 @@ public class BordersNavigationManager : MonoBehaviour
         for (int i = 0; i < _enemies.Count; i++)
         {
             Transform item = _enemies[i];
-            CheckHorizontalLimits(item);
+            CheckVerticalLimits(item);
         }
     }
 
@@ -114,7 +109,7 @@ public class BordersNavigationManager : MonoBehaviour
 
     private void OnEnemySpawn(Transform transform)
     {
-        _enemies.Remove(transform);
+        _enemies.Add(transform);
     }
 
     private void OnEnemyDead(Transform transform)

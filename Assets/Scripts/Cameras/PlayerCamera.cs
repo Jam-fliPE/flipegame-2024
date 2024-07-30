@@ -12,6 +12,7 @@ public class PlayerCamera : MonoBehaviour
         _transform = transform;
         _players = new List<Transform>(2);
         GameplayManager.Instance._onPlayerInstantiated += OnPlayerInstantiated;
+        GameplayManager.Instance._onPlayerDeath += OnPlayerDeath;
     }
 
     void LateUpdate()
@@ -35,5 +36,10 @@ public class PlayerCamera : MonoBehaviour
     private void OnPlayerInstantiated(Transform playerTransform)
     {
         _players.Add(playerTransform);
+    }
+
+    private void OnPlayerDeath(Transform playerTransform)
+    {
+        _players.Remove(playerTransform);
     }
 }
