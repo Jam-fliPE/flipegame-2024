@@ -8,10 +8,13 @@ public abstract class HealthController : MonoBehaviour
     private AnimationController _animationController;
     private int _currentHealth;
 
+    public bool OnHit { get; private set; }
+
     private void Start()
     {
         _currentHealth = _maxHealth;
         _animationController = GetComponent<AnimationController>();
+        OnHit = false;
     }
 
     public void TakeDamage(Transform opponentTransform, int damage)
@@ -27,6 +30,8 @@ public abstract class HealthController : MonoBehaviour
             }
             else
             {
+                OnHit = true;
+                Invoke("RestoreHit", 1.0f);
                 _animationController.PlayHitReaction();
                 OnTakeDamage(opponentTransform);
             }
@@ -45,5 +50,10 @@ public abstract class HealthController : MonoBehaviour
     {
         _animationController.PlayDeath();
         OnDie();
+    }
+
+    private void RestoreHit()
+    {
+        OnHit = false;
     }
 }

@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_healthController.IsAlive())
+        if (_healthController.IsAlive() && !_healthController.OnHit)
         {
             if (_direction != Vector3.zero)
             {

@@ -6,7 +6,7 @@ public class AnimationController : MonoBehaviour
 {
     private Animator _animator;
     private string[] _lightAttacks = { "ze_light_attack_1", "ze_light_attack_2", "ze_light_attack_3" };
-    private string[] _hitReactions = { "hit_reaction_1", "hit_reaction_2" };
+    private string[] _hitReactions = { "hitReaction1", "hitReaction2" };
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class AnimationController : MonoBehaviour
     public void PlayHitReaction()
     {
         int index = UnityEngine.Random.Range(0, _hitReactions.Length);
-        _animator.Play(_hitReactions[index]);
+        _animator.SetTrigger(_hitReactions[index]);
     }
 
     public void PlayDeath()
