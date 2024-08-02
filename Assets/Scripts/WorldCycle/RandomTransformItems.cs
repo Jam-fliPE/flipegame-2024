@@ -8,10 +8,9 @@ public class RandomTransformItems : MonoBehaviour
     [SerializeField]
     private Transform[] _itemsToRotate;
     [SerializeField]
-    private float _positionRange = 2.0f;
+    private float _positionRange = 1.0f;
 
     private float[] _initialPositions;
-    private Transform _transform;
 
     private void Start()
     {
@@ -33,12 +32,8 @@ public class RandomTransformItems : MonoBehaviour
         for (int i = 0; i < _initialPositions.Length; i++)
         {
             Transform item = GetRandomItem(ref randomItems);
-            Vector3 position = item.localPosition;;
-            if (Random.value > 0.5f)
-            {
-                position.z = _initialPositions[i] + Random.Range(-_positionRange, _positionRange);
-            }
-
+            Vector3 position = item.localPosition;
+            position.z = _initialPositions[i] + Random.Range(-_positionRange, _positionRange);
             item.localPosition = position;
         }
     }
@@ -55,8 +50,6 @@ public class RandomTransformItems : MonoBehaviour
 
     private void SetupInitialPositions()
     {
-        _transform = transform;
-
         _initialPositions = new float[_itemsToSwitchLocations.Length];
         for (int i = 0; i < _itemsToSwitchLocations.Length; i++)
         {
