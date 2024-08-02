@@ -102,6 +102,17 @@
                 },
                 {
                     "name": "",
+                    "id": "09a98051-a66f-466b-8f4e-565cd908563c",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f0449de4-2634-4f5a-926e-616d3a78b387",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -113,8 +124,52 @@
                 },
                 {
                     "name": "",
-                    "id": "09a98051-a66f-466b-8f4e-565cd908563c",
-                    "path": "<Keyboard>/j",
+                    "id": "3c97af3e-22b0-4253-a0c3-ee3cf7e404cb",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be8d74ae-0a0e-4da3-8a8e-8e3aaf5f854d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40356fc0-21b1-498a-84b5-ce7944f7bb47",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36a646f0-1830-423b-a18f-13aa162ded84",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05e01aa1-fe40-486d-953f-b8aa1ed50b79",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
