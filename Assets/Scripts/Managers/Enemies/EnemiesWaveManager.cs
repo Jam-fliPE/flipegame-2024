@@ -67,6 +67,8 @@ public class EnemiesWaveManager : MonoBehaviour
         result.z = result.z + UnityEngine.Random.Range(-_spawnRadius, _spawnRadius);
         result.x = result.x + UnityEngine.Random.Range(-_spawnRadius, _spawnRadius);
 
+        UpdateToSafePosition(ref result);
+
         return result;
     }
 
@@ -134,6 +136,24 @@ public class EnemiesWaveManager : MonoBehaviour
             }
 
             _enemies[index].IsEngaged = true;
+        }
+    }
+
+    private void UpdateToSafePosition(ref Vector3 position)
+    {
+        bool updatePosition = true;
+        while (updatePosition)
+        {
+            updatePosition = false;
+            foreach (AIController item in _enemies)
+            {
+                if (Vector3.Distance(item.transform.position, position) < 0.75f)
+                {
+                    position.z += 0.5f;
+                    updatePosition = true;
+                    break;
+                }
+            }
         }
     }
 }

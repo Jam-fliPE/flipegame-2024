@@ -35,8 +35,6 @@ public class EnemiesLevel : MonoBehaviour
 
     public void UpdateIndex()
     {
-        PrintInfo();
-
         _waveIndex++;
 
         if ((_waveIndex % _increaseEnemiesCountPeriod) == 0)
