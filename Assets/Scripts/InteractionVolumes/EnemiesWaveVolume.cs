@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemiesWaveVolume : BaseInteractionVolume
 {
     [SerializeField]
-    private EnemiesWaveData[] _waveData;
+    private int[] _spawnSide;
     [SerializeField]
     private float _limitDistance = 8.0f;
     [SerializeField]
@@ -30,7 +30,7 @@ public class EnemiesWaveVolume : BaseInteractionVolume
 
     private void OnAllEnemiesDead()
     {
-        if (_index < _waveData.Length)
+        if (_index < _spawnSide.Length)
         {
             StartCoroutine(WaitAndSpawnNextWave());
         }
@@ -56,19 +56,19 @@ public class EnemiesWaveVolume : BaseInteractionVolume
 
     private void SpawnNextWave()
     {
-        int spawnSide = _waveData[_index]._spawnSide;
+        int spawnSide = _spawnSide[_index];
         Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * spawnSide);
-        EnemiesWaveManager.Instance.SpawnWave(_waveData[_index], position);
+        EnemiesWaveManager.Instance.SpawnWave(position);
         _index++;
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (_waveData.Length > 0)
+        if (_spawnSide.Length > 0)
         {
-            foreach (EnemiesWaveData item in _waveData)
+            foreach (int item in _spawnSide)
             {
-                Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * item._spawnSide);
+                Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * item);
                 Gizmos.DrawWireSphere(position, 3.0f);
             }
         }

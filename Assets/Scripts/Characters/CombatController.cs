@@ -11,6 +11,8 @@ public class CombatController : MonoBehaviour
     private LayerMask _enemyLayers;
     [SerializeField]
     private int _weaponType = 0;
+    [SerializeField]
+    private int _damage = 1;
 
     private AnimationController _animationController;
 
@@ -41,7 +43,7 @@ public class CombatController : MonoBehaviour
                 healthController = item.GetComponent<EnemyHealthController>();
             }
             
-            healthController.TakeDamage(transform, 20);
+            healthController.TakeDamage(transform, _damage);
             if (_weaponType == 0)
             {
                 SoundManager.Instance.PlayHardHit();

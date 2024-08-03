@@ -9,7 +9,9 @@ public delegate void EnemySpawnDelegate(Transform enemyTransform);
 public class EnemiesWaveManager : MonoBehaviour
 {
     [SerializeField]
-    float _spawnRadius = 3.0f;
+    private GameObject _enemyPrefab;
+    [SerializeField]
+    private float _spawnRadius = 3.0f;
 
     public static EnemiesWaveManager Instance { get; private set; }
     public event AllEnemiesDeadDelegate _onAllEnemiesDead;
@@ -18,24 +20,29 @@ public class EnemiesWaveManager : MonoBehaviour
 
     private List<AIController> _enemies;
     private WaitForSeconds _engagementDelay;
+    private EnemiesLevel _enemiesLevel;
 
     private void Awake()
     {
         Instance = this;
         _enemies = new List<AIController>();
         _engagementDelay = new WaitForSeconds(3.0f);
+        _enemiesLevel = GetComponent<EnemiesLevel>();
     }
 
-    public void SpawnWave(EnemiesWaveData waveData, Vector3 referencePosition)
+    public void SpawnWave(Vector3 referencePosition)
     {
-        foreach (GameObject item in waveData._enemiesPrefab)
+        int enemiesCount = _enemiesLevel.GetEnemiesPerWave();
+        for (int i = 0; i < enemiesCount; i++)
         {
             Vector3 position = GetRandomSpawnPoint(referencePosition);
-            GameObject enemy = Instantiate(item, position, Quaternion.identity);
+            GameObject enemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
+            enemy.GetComponent<HealthController>()._maxHealth = _enemiesLevel.GetEnemiesHP();
             _enemies.Add(enemy.GetComponent<AIController>());
             _onEnemySpawn?.Invoke(enemy.transform);
         }
 
+        _enemiesLevel.UpdateIndex();
         StartCoroutine(RefreshEngagement());
     }
 

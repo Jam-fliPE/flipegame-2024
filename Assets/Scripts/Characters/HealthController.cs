@@ -2,8 +2,7 @@ using UnityEngine;
 
 public abstract class HealthController : MonoBehaviour
 {
-    [SerializeField]
-    private int _maxHealth = 100;
+    public int _maxHealth = 1;
 
     private AnimationController _animationController;
     private int _currentHealth;

@@ -77,4 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379b6840be5da754c89f1b68fa6f5e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveData: []
+  _spawnSide: 01000000ffffffff
+  _limitDistance: 8
+  _spawnDistance: 5
+  _finalWave: 0
