@@ -32,7 +32,8 @@ public abstract class HealthController : MonoBehaviour
                 OnHit = true;
                 Invoke("RestoreHit", 1.0f);
                 _animationController.PlayHitReaction();
-                OnTakeDamage(opponentTransform);
+                float hpPercentage = (float)_currentHealth / _maxHealth;
+                OnTakeDamage(opponentTransform, hpPercentage);
             }
         }
     }
@@ -42,7 +43,7 @@ public abstract class HealthController : MonoBehaviour
         return (_currentHealth > 0);
     }
 
-    protected virtual void OnTakeDamage(Transform opponentTransform) { }
+    protected abstract void OnTakeDamage(Transform opponentTransform, float hpPercentage);
     protected abstract void OnDie();
 
     private void Die()
