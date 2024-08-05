@@ -16,7 +16,7 @@ public class CombatController : MonoBehaviour
 
     private AnimationController _animationController;
 
-    private void Start()
+    protected virtual void Start()
     {
         _animationController = GetComponent<AnimationController>();
     }
@@ -42,8 +42,15 @@ public class CombatController : MonoBehaviour
             {
                 healthController = item.GetComponent<EnemyHealthController>();
             }
-            
-            healthController.TakeDamage(transform, _damage);
+
+            bool killed;
+            healthController.TakeDamage(transform, _damage, out killed);
+
+            if (killed)
+            {
+                OnKilledEnemy();
+            }
+
             if (_weaponType == 0)
             {
                 SoundManager.Instance.PlayHardHit();
@@ -54,6 +61,8 @@ public class CombatController : MonoBehaviour
             }
         }
     }
+
+    protected virtual void OnKilledEnemy() { }
 
     private void OnDrawGizmosSelected()
     {

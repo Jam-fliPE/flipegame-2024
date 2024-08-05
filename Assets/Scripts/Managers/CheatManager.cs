@@ -9,7 +9,8 @@ public class CheatManager : MonoBehaviour
             EnemyHealthController[] enemies = FindObjectsOfType<EnemyHealthController>();
             foreach (EnemyHealthController item in enemies)
             {
-                item.TakeDamage(transform, 99999);
+                bool killed;
+                item.TakeDamage(transform, 99999, out killed);
             }
         }
     }

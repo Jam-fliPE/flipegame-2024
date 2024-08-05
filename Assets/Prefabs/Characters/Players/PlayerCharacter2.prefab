@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4087812754223062521, guid: bc1c2bca32e4b354dafb6ab9c8f68308, type: 3}
+      propertyPath: _weaponType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4098439313878453013, guid: bc1c2bca32e4b354dafb6ab9c8f68308, type: 3}
       propertyPath: _playerIndex
       value: 1

@@ -16,8 +16,9 @@ public abstract class HealthController : MonoBehaviour
         OnHit = false;
     }
 
-    public void TakeDamage(Transform opponentTransform, int damage)
+    public void TakeDamage(Transform opponentTransform, int damage, out bool killed)
     {
+        killed = false;
         if (IsAlive())
         {
             transform.LookAt(opponentTransform.position, Vector3.up);
@@ -25,6 +26,7 @@ public abstract class HealthController : MonoBehaviour
             _currentHealth -= damage;
             if (_currentHealth <= 0)
             {
+                killed = true;
                 Die();
             }
             else

@@ -14,11 +14,14 @@ public class PlayerInfoView : MonoBehaviour
         PlayerHealthController healthController = playerTransform.GetComponent<PlayerHealthController>();
         healthController._onHPChange += OnHPChange;
         healthController._onDie += OnDie;
+
+        PlayerCombatController combatController = playerTransform.GetComponent<PlayerCombatController>();
+        combatController._onScoreChange += OnScoreChange;
     }
 
-    private void OnScoreChange(int newScore)
+    private void OnScoreChange(int currentScore)
     {
-        _score.text = newScore.ToString();
+        _score.text = currentScore.ToString();
     }
 
     private void OnHPChange(float hpPercentage)
