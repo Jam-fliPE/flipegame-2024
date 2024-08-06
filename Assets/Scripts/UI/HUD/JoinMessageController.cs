@@ -9,17 +9,21 @@ public class JoinMessageController : MonoBehaviour
     private Transform[] _infoViewTransforms;
 
     private TextMeshProUGUI _message;
+    /*
     private float _time;
     private bool _blinking;
-
+    */
     private void Start()
     {
         GameplayManager.Instance._onPlayerInstantiated += OnPlayerInstantiated;
+        _message = GetComponent<TextMeshProUGUI>();
+        /*
         _time = 0.0f;
         _blinking = true;
-        _message = GetComponent<TextMeshProUGUI>();
+        */
     }
 
+    /*
     private void Update()
     {
         if (_blinking)
@@ -32,6 +36,7 @@ public class JoinMessageController : MonoBehaviour
             }
         }
     }
+    */
 
     private void OnPlayerInstantiated(Transform playerTransform)
     {
@@ -40,7 +45,7 @@ public class JoinMessageController : MonoBehaviour
         int playersCount = GameplayManager.Instance.GetPlayersCount();
         if (playersCount >= 2)
         {
-            _blinking = false;
+            // _blinking = false;
             _message.enabled = false;
 
             playerInfoPrefab = _playerInfoViewsPrefab[1];

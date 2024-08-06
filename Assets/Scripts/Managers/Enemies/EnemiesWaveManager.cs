@@ -61,6 +61,22 @@ public class EnemiesWaveManager : MonoBehaviour
         }
     }
 
+    public float GetMinDistanceToEnemies(float referencePosition)
+    {
+        float result = float.MaxValue;
+
+        foreach (AIController item in _enemies)
+        {
+            float distance = Mathf.Abs(item.transform.position.z - referencePosition);
+            if (distance < result)
+            {
+                result = distance;
+            }
+        }
+
+        return result;
+    }
+
     private Vector3 GetRandomSpawnPoint(Vector3 referencePosition)
     {
         Vector3 result = referencePosition;
