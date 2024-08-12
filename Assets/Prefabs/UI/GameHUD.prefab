@@ -447,7 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1120393429362774502}
   m_Layer: 5
-  m_Name: SecondInfoView
+  m_Name: SecondInfoViewTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8554145185088608396}
   m_Layer: 5
-  m_Name: FirstInfoView
+  m_Name: FirstInfoViewTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

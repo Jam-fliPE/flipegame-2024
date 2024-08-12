@@ -39,6 +39,6 @@ public class PlayerInfoView : MonoBehaviour
         _hp.localScale = new Vector2(0.0f, 1.0f);
         _gameplayView.SetActive(false);
         _leaderboardControllerView.SetActive(true);
-        _leaderboardControllerView.GetComponent<LeaderboardEntryView>().SetScore(_score.text);
+        _leaderboardControllerView.GetComponent<LeaderboardInputView>().SetScore(_score.text);
     }
 }

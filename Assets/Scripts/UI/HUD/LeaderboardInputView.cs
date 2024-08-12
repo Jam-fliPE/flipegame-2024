@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LeaderboardEntryView : MonoBehaviour
+public class LeaderboardInputView : MonoBehaviour
 {
     [SerializeField]
     private LeaderboardLetterView[] _letters;

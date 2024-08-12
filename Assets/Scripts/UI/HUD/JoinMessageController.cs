@@ -9,34 +9,12 @@ public class JoinMessageController : MonoBehaviour
     private Transform[] _infoViewTransforms;
 
     private TextMeshProUGUI _message;
-    /*
-    private float _time;
-    private bool _blinking;
-    */
+
     private void Start()
     {
         GameplayManager.Instance._onPlayerInstantiated += OnPlayerInstantiated;
         _message = GetComponent<TextMeshProUGUI>();
-        /*
-        _time = 0.0f;
-        _blinking = true;
-        */
     }
-
-    /*
-    private void Update()
-    {
-        if (_blinking)
-        {
-            _time += Time.deltaTime;
-            if (_time > 0.5f)
-            {
-                _time = 0.0f;
-                _message.enabled = !_message.enabled;
-            }
-        }
-    }
-    */
 
     private void OnPlayerInstantiated(Transform playerTransform)
     {
