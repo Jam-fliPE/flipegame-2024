@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EndGameScreen : MonoBehaviour
 {
-    private void Start()
+    public void Select(InputAction.CallbackContext context)
     {
         Invoke("LoadMainMenu", 4.0f);
     }

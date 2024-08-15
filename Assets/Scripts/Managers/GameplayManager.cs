@@ -21,6 +21,7 @@ public class GameplayManager : MonoBehaviour
 
     private List<Transform> _players;
     private int _playerIndex;
+    private int _playersInScoreState = 0;
 
     private void Awake()
     {
@@ -103,6 +104,21 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    public void OnPlayerScoreInputBegin()
+    {
+        _playersInScoreState++;
+    }
+
+    public void OnPlayerScoreInputEnd()
+    {
+        _playersInScoreState--;
+
+        if ((_players.Count == 0) && (_playersInScoreState == 0))
+        {
+            Invoke("LoadLeaderboard", 1.0f);
+        }
+    }
+
     private void DisableJoinInput()
     {
         PlayerInputManager inputManager = FindObjectOfType<PlayerInputManager>();
@@ -112,5 +128,10 @@ public class GameplayManager : MonoBehaviour
     private void LoadDefeat()
     {
         ScreenManager.Instance.LoadDefeatScreen();
+    }
+
+    private void LoadLeaderboard()
+    {
+        ScreenManager.Instance.LoadLeaderboard();
     }
 }

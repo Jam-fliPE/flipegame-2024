@@ -40,6 +40,11 @@ public class ScreenManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadLeaderboard()
+    {
+        SceneManager.LoadScene("Leaderboard");
+    }
+
     public void LoadVictoryScreen()
     {
         Instantiate(_victoryScreen);

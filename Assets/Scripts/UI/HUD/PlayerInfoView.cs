@@ -37,8 +37,16 @@ public class PlayerInfoView : MonoBehaviour
     private void OnDie()
     {
         _hp.localScale = new Vector2(0.0f, 1.0f);
-        _gameplayView.SetActive(false);
-        _leaderboardControllerView.SetActive(true);
-        _leaderboardControllerView.GetComponent<LeaderboardInputView>().SetScore(_score.text);
+        CheckScore();
+    }
+
+    private void CheckScore()
+    {
+        if (DatabaseManager.Instance.IsScoreSuitable(int.Parse(_score.text)))
+        {
+            _gameplayView.SetActive(false);
+            _leaderboardControllerView.SetActive(true);
+            _leaderboardControllerView.GetComponent<LeaderboardInputView>().SetScore(_score.text);
+        }
     }
 }

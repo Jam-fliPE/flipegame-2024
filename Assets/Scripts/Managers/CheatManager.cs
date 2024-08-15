@@ -13,5 +13,11 @@ public class CheatManager : MonoBehaviour
                 item.TakeDamage(transform, 99999, out killed);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            bool killed;
+            HealthController healthController = GameplayManager.Instance.GetPlayer().GetComponent<HealthController>();
+            healthController.TakeDamage(transform, 9999, out killed);
+        }
     }
 }

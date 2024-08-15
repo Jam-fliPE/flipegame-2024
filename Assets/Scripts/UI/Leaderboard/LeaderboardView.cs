@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,10 +11,19 @@ public class LeaderboardView : MonoBehaviour
 
     private void Start()
     {
+        List<string> names = DatabaseManager.Instance.GetNames();
+        List<int> scores = DatabaseManager.Instance.GetScores();
         for (int i = 0; i < 5; i++)
         {
-            LeaderboardEntryView entry = Instantiate(_entryPrefab, _entryTransforms[i]).GetComponent<LeaderboardEntryView>();
-            entry.Setup("XYZ", "99");
+            if (scores[i] > 0)
+            {
+                LeaderboardEntryView entry = Instantiate(_entryPrefab, _entryTransforms[i]).GetComponent<LeaderboardEntryView>();
+                entry.Setup(names[i], scores[i].ToString());
+            }
+            else
+            {
+                break;
+            }
         }
     }
     

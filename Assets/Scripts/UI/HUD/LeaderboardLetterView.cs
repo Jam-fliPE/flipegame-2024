@@ -4,6 +4,8 @@ using UnityEngine;
 public class LeaderboardLetterView : MonoBehaviour
 {
     private TextMeshProUGUI _letter;
+    
+    public string Text {  get { return _letter.text; } }
 
     private void Awake()
     {

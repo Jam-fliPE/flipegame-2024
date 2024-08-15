@@ -17,6 +17,7 @@ public class DatabaseManager : MonoBehaviour
         }
 
         Instance = this;
+        InitDatabase();
     }
 
     private void Start()
@@ -42,6 +43,16 @@ public class DatabaseManager : MonoBehaviour
         return result;
     }
 
+    public List<string> GetNames()
+    {
+        return _names;
+    }
+
+    public List<int> GetScores()
+    {
+        return _scores;
+    }
+
     public void SaveLeaderboardEntry(string name, int score)
     {
         bool success = false;
@@ -52,6 +63,7 @@ public class DatabaseManager : MonoBehaviour
                 _names.Insert(i, name);
                 _scores.Insert(i, score);
                 success = true;
+                break;
             }
         }
 
@@ -105,8 +117,28 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Clear Player Prefs")]
     public void DEBUG_ClearDatabase()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    [ContextMenu("Print Player Prefs")]
+    public void DEBUG_PrintPlayerPrefs()
+    {
+        Debug.Log("=== Leaderboard Data ===");
+        if (PlayerPrefs.HasKey("leaderboardInitialized"))
+        {
+            for (int i = 0; i < MAX_ENTRIES; i++)
+            {
+                string key = string.Format("name_{0}", i);
+                string name = PlayerPrefs.GetString(key);
+
+                key = string.Format("score_{0}", i);
+                int score = PlayerPrefs.GetInt(key);
+
+                Debug.Log(string.Format("{0}: {1}", name, score));
+            }
+        }
     }
 }

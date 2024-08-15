@@ -20,6 +20,11 @@ public class LeaderboardInputView : MonoBehaviour
         _currentLetter = _letters[0];
     }
 
+    private void Start()
+    {
+        GameplayManager.Instance.OnPlayerScoreInputBegin();
+    }
+
     private void Update()
     {
         if (_currentLetter != null)
@@ -64,6 +69,8 @@ public class LeaderboardInputView : MonoBehaviour
 
             _currentLetter.gameObject.SetActive(true);
             _currentLetter = _letters[_letterIndex];
+
+            SoundManager.Instance.PlayMenuNavigation();
         }
     }
 
@@ -74,14 +81,26 @@ public class LeaderboardInputView : MonoBehaviour
             _currentLetter.gameObject.SetActive(true);
             if (_letterIndex == _letters.Length - 1)
             {
+                SoundManager.Instance.PlayMenuSelection();
                 _currentLetter = null;
+                SaveData();
+                GameplayManager.Instance.OnPlayerScoreInputEnd();
                 GetComponent<PlayerInput>().enabled = false;
             }
             else
             {
+                SoundManager.Instance.PlayMenuNavigation();
                 _letterIndex++;
                 _currentLetter = _letters[_letterIndex];
             }
         }
+    }
+
+    private void SaveData()
+    {
+        string name = string.Format("{0}{1}{2}", _letters[0].Text, _letters[1].Text, _letters[2].Text);
+        string score = _score.text;
+
+        DatabaseManager.Instance.SaveLeaderboardEntry(name, int.Parse(score));
     }
 }
