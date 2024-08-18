@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public delegate void OnPlayerInstantiated(Transform playerTransform);
 public delegate void OnPlayerDeath(Transform playerTransform);
+public delegate void OnAllPlayersDead();
 
 public class GameplayManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameplayManager : MonoBehaviour
 
     public OnPlayerInstantiated _onPlayerInstantiated;
     public OnPlayerDeath _onPlayerDeath;
+    public OnAllPlayersDead _onAllPlayersDead;
 
     private List<Transform> _players;
     private int _playerIndex;
@@ -96,6 +98,7 @@ public class GameplayManager : MonoBehaviour
         _onPlayerDeath?.Invoke(deadPlayer);
         if (_players.Count == 0 )
         {
+            _onAllPlayersDead?.Invoke();
             Invoke("LoadDefeat", 3.0f);
         }
         else

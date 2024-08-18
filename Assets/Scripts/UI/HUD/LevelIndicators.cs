@@ -17,7 +17,9 @@ public class LevelIndicators : MonoBehaviour
 
     private void Start()
     {
-        _cameraTransform = GameplayManager.Instance.GetCameraTransform();
+        GameplayManager gameplayManager = GameplayManager.Instance;
+        _cameraTransform = gameplayManager.GetCameraTransform();
+        gameplayManager._onAllPlayersDead += OnAllPlayersDead;
         EnemiesWaveManager.Instance._onAllEnemiesDead += OnAllEnemiesDead;
         EnemiesWaveManager.Instance._onEnemySpawn += OnEnemySpawn;
 
@@ -52,6 +54,7 @@ public class LevelIndicators : MonoBehaviour
 
     private void OnAllEnemiesDead()
     {
+        _currentIndicator?.SetActive(false);
         _time = -1.0f;
         _currentIndicator = _goIndicator;
     }
@@ -65,5 +68,12 @@ public class LevelIndicators : MonoBehaviour
             _currentIndicator.SetActive(false);
             _currentIndicator = null;
         }
+    }
+
+    private void OnAllPlayersDead()
+    {
+        GameplayManager.Instance._onAllPlayersDead -= OnAllPlayersDead;
+        _currentIndicator?.SetActive(false);
+        _currentIndicator = null;
     }
 }
