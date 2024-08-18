@@ -131,6 +131,11 @@ public class GameplayManager : MonoBehaviour
     private void LoadDefeat()
     {
         ScreenManager.Instance.LoadDefeatScreen();
+
+        if (_playersInScoreState == 0)
+        {
+            Invoke("LoadLeaderboard", 3.0f);
+        }
     }
 
     private void LoadLeaderboard()

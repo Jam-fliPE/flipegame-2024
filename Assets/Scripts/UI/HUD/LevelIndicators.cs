@@ -75,5 +75,6 @@ public class LevelIndicators : MonoBehaviour
         GameplayManager.Instance._onAllPlayersDead -= OnAllPlayersDead;
         _currentIndicator?.SetActive(false);
         _currentIndicator = null;
+        enabled = false;
     }
 }

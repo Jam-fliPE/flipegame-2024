@@ -26,12 +26,15 @@ public class LeaderboardView : MonoBehaviour
                 break;
             }
         }
+
+        Invoke("LoadMenu", 5.0f);
     }
     
     public void Select(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            StopAllCoroutines();
             GetComponent<PlayerInput>().enabled = false;
             SoundManager.Instance.PlayMenuSelection();
             Invoke("LoadMenu", 1.0f);
