@@ -15,14 +15,21 @@ public class LeaderboardLetterView : MonoBehaviour
     public void Increase()
     {
         char character = _letter.text[0];
-        character++;
-        _letter.text = character.ToString();
+
+        if (character < 'Z')
+        {
+            character++;
+            _letter.text = character.ToString();
+        }
     }
 
     public void Decrease()
     {
         char character = _letter.text[0];
-        character--;
-        _letter.text = character.ToString();
+        if (character > 'A')
+        {
+            character--;
+            _letter.text = character.ToString();
+        }
     }
 }
