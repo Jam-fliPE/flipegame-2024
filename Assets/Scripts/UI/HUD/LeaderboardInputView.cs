@@ -12,6 +12,7 @@ public class LeaderboardInputView : MonoBehaviour
     private LeaderboardLetterView _currentLetter;
     private float _time;
     private int _letterIndex;
+    private bool _inputEnabled;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class LeaderboardInputView : MonoBehaviour
     private void Start()
     {
         GameplayManager.Instance.OnPlayerScoreInputBegin();
+        _inputEnabled = true;
     }
 
     private void Update()
@@ -45,7 +47,7 @@ public class LeaderboardInputView : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (_inputEnabled && context.performed)
         {
             Vector2 direction = context.ReadValue<Vector2>();
             if (direction.x > 0.5f)
@@ -76,16 +78,16 @@ public class LeaderboardInputView : MonoBehaviour
 
     public void Select(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (_inputEnabled && context.performed)
         {
             _currentLetter.gameObject.SetActive(true);
             if (_letterIndex == _letters.Length - 1)
             {
+                _inputEnabled = false;
                 SoundManager.Instance.PlayMenuSelection();
                 _currentLetter = null;
                 SaveData();
                 GameplayManager.Instance.OnPlayerScoreInputEnd();
-                GetComponent<PlayerInput>().enabled = false;
             }
             else
             {

@@ -13,15 +13,21 @@ public class PlayerInfoView : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _score;
 
+    private PlayerHealthController _healthController;
+    private PlayerCombatController _combatController;
+
+    public LeaderboardInputView InputView { get { return _leaderboardControllerView.GetComponent<LeaderboardInputView>(); } }
+
     public void Setup(Transform playerTransform)
     {
         _score.text = "0";
-        PlayerHealthController healthController = playerTransform.GetComponent<PlayerHealthController>();
-        healthController._onHPChange += OnHPChange;
-        healthController._onDie += OnDie;
+        _healthController = playerTransform.GetComponent<PlayerHealthController>();
+        _healthController._onHPChange += OnHPChange;
+        _healthController._onDie += OnDie;
 
-        PlayerCombatController combatController = playerTransform.GetComponent<PlayerCombatController>();
-        combatController._onScoreChange += OnScoreChange;
+        _combatController = playerTransform.GetComponent<PlayerCombatController>();
+        _combatController._onScoreChange += OnScoreChange;
+        playerTransform.GetComponent<PlayerController>().PlayerInfoView = this;
     }
 
     private void OnScoreChange(int currentScore)
@@ -36,6 +42,10 @@ public class PlayerInfoView : MonoBehaviour
 
     private void OnDie()
     {
+        _healthController._onHPChange -= OnHPChange;
+        _healthController._onDie -= OnDie;
+        _combatController._onScoreChange -= OnScoreChange;
+
         _hp.localScale = new Vector2(0.0f, 1.0f);
         CheckScore();
     }

@@ -25,6 +25,7 @@ public class DatabaseManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _names = new List<string>();
         _scores = new List<int>();
+        LoadData();
     }
 
     public bool IsScoreSuitable(int score)

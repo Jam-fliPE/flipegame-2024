@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 InputVector { get; private set; }
     public Transform PartnerTransform { get; set; }
     public CharacterController PartnerController { get; set; }
+    public PlayerInfoView PlayerInfoView { get; set; }
 
     private AControllerState _state;
     private ControllerStatesFactory _statesFactory;

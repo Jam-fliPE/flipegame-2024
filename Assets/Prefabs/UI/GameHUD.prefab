@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInfoViewsPrefab:
   - {fileID: 7078280298816218950, guid: 8b4e9a5eccdb32945841c385c8b4be54, type: 3}
-  - {fileID: 7078280298816218950, guid: 63798a7ed58bc2f43b3d4bbc2c634b29, type: 3}
+  - {fileID: 2528734697225483316, guid: 9e30588f475751140870dd2300533f65, type: 3}
   _infoViewTransforms:
   - {fileID: 8554145185088608396}
   - {fileID: 1120393429362774502}
