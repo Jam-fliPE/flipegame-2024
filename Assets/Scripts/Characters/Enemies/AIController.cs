@@ -66,7 +66,13 @@ public class AIController : MonoBehaviour
     {
         if (deadPlayer == PlayerTransform)
         {
-            SetPlayerTarget(GameplayManager.Instance.GetPlayer());
+            Transform nextPlayer = GameplayManager.Instance.GetPlayer();
+            SetPlayerTarget(nextPlayer);
+
+            if (nextPlayer == null)
+            {
+                ChangeState(new IdleState());
+            }
         }
     }
 }
