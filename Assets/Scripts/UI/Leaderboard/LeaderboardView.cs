@@ -18,7 +18,8 @@ public class LeaderboardView : MonoBehaviour
             if (scores[i] > 0)
             {
                 LeaderboardEntryView entry = Instantiate(_entryPrefab, _entryTransforms[i]).GetComponent<LeaderboardEntryView>();
-                entry.Setup(names[i], scores[i].ToString());
+                string position = string.Format("{0}#", i + 1);
+                entry.Setup(position, names[i], scores[i].ToString());
             }
             else
             {

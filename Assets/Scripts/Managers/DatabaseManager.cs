@@ -55,23 +55,23 @@ public class DatabaseManager : MonoBehaviour
 
     public void SaveLeaderboardEntry(string name, int score)
     {
-        bool success = false;
         for (int i = 0; i < MAX_ENTRIES; i++)
         {
             if (score > _scores[i])
             {
                 _names.Insert(i, name);
                 _scores.Insert(i, score);
-                success = true;
                 break;
             }
         }
 
-        if (success)
+        if (_names.Count > MAX_ENTRIES)
         {
             _names.RemoveAt(_names.Count - 1);
             _scores.Remove(_scores.Count - 1);
         }
+
+        SaveData();
     }
 
     private void SaveData()
