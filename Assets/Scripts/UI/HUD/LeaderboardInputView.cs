@@ -11,6 +11,7 @@ public class LeaderboardInputView : MonoBehaviour
 
     private LeaderboardLetterView _currentLetter;
     private float _time;
+    private float _inputTime;
     private int _letterIndex;
     private bool _inputEnabled;
 
@@ -18,6 +19,7 @@ public class LeaderboardInputView : MonoBehaviour
     {
         _time = 0.0f;
         _letterIndex = 0;
+        _inputTime = 0.0f;
         _currentLetter = _letters[0];
     }
 
@@ -37,7 +39,9 @@ public class LeaderboardInputView : MonoBehaviour
                 _time = 0.0f;
                 _currentLetter.gameObject.SetActive(!_currentLetter.gameObject.activeSelf);
             }
+
         }
+        _inputTime += Time.deltaTime;
     }
 
     public void SetScore(string newScore)
@@ -47,8 +51,9 @@ public class LeaderboardInputView : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (_inputEnabled && context.performed)
+        if (_inputEnabled && context.performed && (_inputTime > 0.1f))
         {
+            _inputTime = 0.0f;
             Vector2 direction = context.ReadValue<Vector2>();
             if (direction.x > 0.5f)
             {
