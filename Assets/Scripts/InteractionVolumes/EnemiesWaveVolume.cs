@@ -8,8 +8,6 @@ public class EnemiesWaveVolume : BaseInteractionVolume
     [SerializeField]
     private float _limitDistance = 8.0f;
     [SerializeField]
-    private float _spawnDistance = 5.0f;
-    [SerializeField]
     private bool _finalWave = false;
 
     private float LeftLimit { get { return transform.position.z - _limitDistance; } }
@@ -57,8 +55,7 @@ public class EnemiesWaveVolume : BaseInteractionVolume
     private void SpawnNextWave()
     {
         int spawnSide = _spawnSide[_index];
-        Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * spawnSide);
-        EnemiesWaveManager.Instance.SpawnWave(position);
+        EnemiesWaveManager.Instance.SpawnWave(spawnSide);
         _index++;
     }
 
@@ -68,8 +65,9 @@ public class EnemiesWaveVolume : BaseInteractionVolume
         {
             foreach (int item in _spawnSide)
             {
-                Vector3 position = transform.position + new Vector3(0.0f, 0.0f, _spawnDistance * item);
-                Gizmos.DrawWireSphere(position, 3.0f);
+                Vector3 Top = transform.position + new Vector3(-5.0f, 0.0f, 8.0f * item);
+                Vector3 Bottom = transform.position + new Vector3(5.0f, 0.0f, 3.0f * item);
+                Gizmos.DrawLine(Bottom, Top);
             }
         }
 

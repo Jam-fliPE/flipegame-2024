@@ -11,7 +11,7 @@ public class EnemiesWaveManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
-    private float _spawnRadius = 3.0f;
+    private float _spawnRadius = 5.0f;
 
     public static EnemiesWaveManager Instance { get; private set; }
     public event AllEnemiesDeadDelegate _onAllEnemiesDead;
@@ -21,6 +21,7 @@ public class EnemiesWaveManager : MonoBehaviour
     private List<AIController> _enemies;
     private WaitForSeconds _engagementDelay;
     private EnemiesLevel _enemiesLevel;
+    private Transform _cameraTransform;
 
     private void Awake()
     {
@@ -30,12 +31,17 @@ public class EnemiesWaveManager : MonoBehaviour
         _enemiesLevel = GetComponent<EnemiesLevel>();
     }
 
-    public void SpawnWave(Vector3 referencePosition)
+    private void Start()
+    {
+        _cameraTransform = GameplayManager.Instance.GetCameraTransform();
+    }
+
+    public void SpawnWave(int spawnSide)
     {
         int enemiesCount = _enemiesLevel.GetEnemiesPerWave();
         for (int i = 0; i < enemiesCount; i++)
         {
-            Vector3 position = GetRandomSpawnPoint(referencePosition);
+            Vector3 position = GetRandomSpawnPoint(spawnSide);
             GameObject enemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
             enemy.GetComponent<HealthController>()._maxHealth = _enemiesLevel.GetEnemiesHP();
             _enemies.Add(enemy.GetComponent<AIController>());
@@ -77,11 +83,11 @@ public class EnemiesWaveManager : MonoBehaviour
         return result;
     }
 
-    private Vector3 GetRandomSpawnPoint(Vector3 referencePosition)
+    private Vector3 GetRandomSpawnPoint(int spawnSide)
     {
-        Vector3 result = referencePosition;
-        result.z = result.z + UnityEngine.Random.Range(-_spawnRadius, _spawnRadius);
-        result.x = result.x + UnityEngine.Random.Range(-_spawnRadius, _spawnRadius);
+        Vector3 result = _cameraTransform.position;
+        result.x = Random.Range(-_spawnRadius, _spawnRadius);
+        result.z = result.z - ((result.x + -14) / 2.0f) * spawnSide;
 
         UpdateToSafePosition(ref result);
 
