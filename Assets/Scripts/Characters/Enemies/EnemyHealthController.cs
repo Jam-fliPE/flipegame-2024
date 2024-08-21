@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class EnemyHealthController : HealthController
 {
-    [SerializeField]
-    private Renderer _renderer;
-
     protected override void OnTakeDamage(Transform opponentTransform, float hpPercentage)
     {
         GetComponent<AIController>().SetPlayerTarget(opponentTransform);
