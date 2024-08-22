@@ -11,7 +11,6 @@ public class LeaderboardInputView : MonoBehaviour
 
     private LeaderboardLetterView _currentLetter;
     private float _time;
-    private float _inputTime;
     private int _letterIndex;
     private bool _inputEnabled;
 
@@ -19,7 +18,6 @@ public class LeaderboardInputView : MonoBehaviour
     {
         _time = 0.0f;
         _letterIndex = 0;
-        _inputTime = 0.0f;
         _currentLetter = _letters[0];
     }
 
@@ -41,7 +39,6 @@ public class LeaderboardInputView : MonoBehaviour
             }
 
         }
-        _inputTime += Time.deltaTime;
     }
 
     public void SetScore(string newScore)
@@ -51,33 +48,35 @@ public class LeaderboardInputView : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (_inputEnabled && context.performed && (_inputTime > 0.1f))
+        UIInputMoveController.Update(context.canceled);
+        if (_inputEnabled && context.performed)
         {
-            _inputTime = 0.0f;
             Vector2 direction = context.ReadValue<Vector2>();
-            if (direction.x > 0.5f)
+            if (UIInputMoveController.CanMove(ref direction))
             {
-                _letterIndex++;
-            }
-            else if (direction.x < -0.5f)
-            {
-                _letterIndex--;
-            }
-            else if (direction.y > 0.5f)
-            {
-                _currentLetter.Increase();
-            }
-            else if (direction.y < -0.5f)
-            {
-                _currentLetter.Decrease();
-            }
+                if (direction.x > 0.0f)
+                {
+                    _letterIndex++;
+                }
+                else if (direction.x < -0.0f)
+                {
+                    _letterIndex--;
+                }
+                else if (direction.y > 0.0f)
+                {
+                    _currentLetter.Decrease();
+                }
+                else if (direction.y < -0.0f)
+                {
+                    _currentLetter.Increase();
+                }
 
-            _letterIndex = Mathf.Clamp(_letterIndex, 0, _letters.Length - 1);
+                SoundManager.Instance.PlayMenuNavigation();
+                _letterIndex = Mathf.Clamp(_letterIndex, 0, _letters.Length - 1);
 
-            _currentLetter.gameObject.SetActive(true);
-            _currentLetter = _letters[_letterIndex];
-
-            SoundManager.Instance.PlayMenuNavigation();
+                _currentLetter.gameObject.SetActive(true);
+                _currentLetter = _letters[_letterIndex];
+            }
         }
     }
 

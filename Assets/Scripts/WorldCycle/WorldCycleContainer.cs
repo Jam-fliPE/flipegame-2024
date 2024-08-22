@@ -20,6 +20,7 @@ public class WorldCycleContainer : MonoBehaviour
         _currentIndex = 0;
         _players = new List<Transform>();
         GameplayManager.Instance._onPlayerInstantiated += OnPlayerInstantiated;
+        GameplayManager.Instance._onPlayerDeath += OnPlayerDeath;
         _cameraTransform = GameplayManager.Instance.GetCameraTransform();
     }
 
@@ -35,6 +36,11 @@ public class WorldCycleContainer : MonoBehaviour
     {
         playerTransform.SetParent(_containers[_currentIndex], true);
         _players.Add(playerTransform);
+    }
+
+    private void OnPlayerDeath(Transform playerTransform)
+    {
+        _players.Remove(playerTransform);
     }
 
     private void Cycle()

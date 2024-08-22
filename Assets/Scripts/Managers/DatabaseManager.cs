@@ -11,13 +11,15 @@ public class DatabaseManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(Instance.gameObject);
+            Instance = this;
+            InitDatabase();
         }
-
-        Instance = this;
-        InitDatabase();
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -85,6 +87,8 @@ public class DatabaseManager : MonoBehaviour
             key = string.Format("score_{0}", i);
             PlayerPrefs.SetInt(key, _scores[i]);
         }
+
+        PlayerPrefs.Save();
     }
 
     private void LoadData()

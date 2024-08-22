@@ -19,5 +19,10 @@ public class CheatManager : MonoBehaviour
             HealthController healthController = GameplayManager.Instance.GetPlayer().GetComponent<HealthController>();
             healthController.TakeDamage(transform, 9999, out killed);
         }
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            DatabaseManager.Instance.DEBUG_ClearDatabase();
+            Application.Quit();
+        }
     }
 }

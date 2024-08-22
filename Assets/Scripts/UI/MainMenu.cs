@@ -59,40 +59,44 @@ public class MainMenu : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        UIInputMoveController.Update(context.canceled);
         if (_navigationEnabled && context.performed)
         {
             Vector2 direction = context.ReadValue<Vector2>();
-            if (direction.y > 0.5f)
+            if (UIInputMoveController.CanMove(ref direction))
             {
-                SetSelection(_startButton, _startText);
-            }
-            else if (direction.y < -0.5f)
-            {
-                if (_currentButton == _startButton)
+                if (direction.y > 0.0f)
                 {
-                    SetSelection(_previousButton, _previousText);
+                    SetSelection(_startButton, _startText);
                 }
-            }
-            else if (direction.x > 0.5f)
-            {
-                if (_currentButton == _controlsButton)
+                else if (direction.y < 0.0f)
                 {
-                    SetSelection(_creditsButton, _creditsText);
+                    if (_currentButton == _startButton)
+                    {
+                        SetSelection(_previousButton, _previousText);
+                    }
                 }
-                else if (_currentButton == _creditsButton)
+                else if (direction.x > 0.0f)
                 {
-                    SetSelection(_quitButton, _quitText);
+                    if (_currentButton == _controlsButton)
+                    {
+                        SetSelection(_creditsButton, _creditsText);
+                    }
+                    else if (_currentButton == _creditsButton)
+                    {
+                        SetSelection(_quitButton, _quitText);
+                    }
                 }
-            }
-            else if (direction.x < -0.5f)
-            {
-                if (_currentButton == _quitButton)
+                else if (direction.x < 0.0f)
                 {
-                    SetSelection(_creditsButton, _creditsText);
-                }
-                else if (_currentButton == _creditsButton)
-                {
-                    SetSelection(_controlsButton, _controlsText);
+                    if (_currentButton == _quitButton)
+                    {
+                        SetSelection(_creditsButton, _creditsText);
+                    }
+                    else if (_currentButton == _creditsButton)
+                    {
+                        SetSelection(_controlsButton, _controlsText);
+                    }
                 }
             }
         }

@@ -59,13 +59,13 @@ public class GameplayManager : MonoBehaviour
 
         Vector3 position = _cameraTransform.position;
         position.y = 0.0f;
-        position.x = -1.0f;
+        position.x = -2.0f;
 
         GameObject playerPrefab = _playerPrefab1;
         if (index == 0)
         {
             playerPrefab = _playerPrefab0;
-            position.x = 1.0f;
+            position.x = 2.0f;
         }
 
         result = Instantiate(playerPrefab, position, Quaternion.identity).transform;

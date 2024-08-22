@@ -12,12 +12,14 @@ public class ScreenManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(Instance.gameObject);
+            Instance = this;
         }
-
-        Instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
